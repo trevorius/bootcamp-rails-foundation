@@ -103,43 +103,43 @@ function postToGraphQLApi(id){
     //     }
     // })
     
-    // $.ajax({
-    //     method: "POST",
-    //     url: "http://localhost:3002/graphql",
-    //     contentType: "application/json",
-    //     data: JSON.stringify({
-    //       query: `{
-    //                 customerinfo (id: ${id}){
-    //                 customer{
-    //                     id
-    //                     companyName
-    //                     buildings{
-    //                     addressOfTheBuilding
-    //                     batteries{
-    //                         id
-    //                         status
-    //                         columns{
-    //                         id
-    //                         elevators{
-    //                             id
-    //                         }
-    //                         }
+    $.ajax({
+        method: "POST",
+        url: "http://localhost:3002/graphql",
+        contentType: "application/json",
+        data: JSON.stringify({
+          query: `{
+                    customerinfo (id: ${id}){
+                    customer{
+                        id
+                        companyName
+                        buildings{
+                        addressOfTheBuilding
+                        batteries{
+                            id
+                            status
+                            columns{
+                            id
+                            elevators{
+                                id
+                            }
+                            }
                 
-    //                     }
-    //                     }
-    //                 }
-    //                 }
-    //                 }`
+                        }
+                        }
+                    }
+                    }
+                    }`
 
-    //     }),
-    //     success: (d) => { 
-    //         alert("local post sent!");
-    //         //         //JSON.parse(data);
-    //         //         //console.log(data.Buildings)
-    //         console.log(JSON.stringify(d))
-    //         console.log(d.data.customerinfo.customer.companyName)
-    //     }
-    // })
+        }),
+        success: (d) => { 
+            alert("local post sent!");
+            //         //JSON.parse(data);
+            //         //console.log(data.Buildings)
+            console.log(JSON.stringify(d))
+            console.log(d.data.customerinfo.customer.companyName)
+        }
+    })
     
 
 };

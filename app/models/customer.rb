@@ -35,7 +35,7 @@ class Customer < ApplicationRecord
     end
 
     def dropbox
-        customer_leads = Lead.where(company_name: self.company_name)
+        customer_leads = Lead.where(company_name: self.company_name).or(Lead.where(email: self.email_company_contact)).or(Lead.where(email: self.admin_user.email))
         puts "-------------------------------------------------------"
         pp customer_leads
         puts customer_leads.count
@@ -50,14 +50,14 @@ class Customer < ApplicationRecord
           puts "-------------------------------------------------------"
 
           begin
-            client.get_metadata("/rocket-elevators/#{l.company_name}") 
+            client.get_metadata("/#{l.company_name}") 
             puts "-------------------------------------------------------"
             puts "get metadata"
             puts "-------------------------------------------------------"
 
           rescue => exception
           
-            client.create_folder("/rocket-elevators/#{l.company_name}")
+            client.create_folder("/#{l.company_name}")
             puts "-------------------------------------------------------"
             puts "create folder."
             puts "-------------------------------------------------------"
@@ -66,7 +66,7 @@ class Customer < ApplicationRecord
           if l.attached_file != nil
             begin
 
-              client.get_metadata("/rocket-elevators/#{l.company_name}")
+              client.get_metadata("/#{l.company_name}")
               puts "-------------------------------------------------------"
               puts "before exception"
               puts "-------------------------------------------------------"
@@ -90,7 +90,7 @@ class Customer < ApplicationRecord
 
 
 
-              client.upload("/rocket-elevators/#{l.company_name}/#{file_name}", file_content)
+              client.upload("/#{l.company_name}/#{file_name}", file_content)
               
               
               
