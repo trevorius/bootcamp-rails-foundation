@@ -128,3 +128,4 @@ gem 'ibm_watson'
 gem 'dropbox_api'
 
 gem 'rubocop-faker'
+

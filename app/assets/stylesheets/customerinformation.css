@@ -1,4 +1,12 @@
 #test-title{
     font-weight: bold;
-    font-size: 100px;
+    font-size: 10px;
+}
+
+.customer-form{
+    width: 10%;
+}
+
+#REST-response{
+
 }
