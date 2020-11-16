@@ -13,7 +13,7 @@ $(function() {
     });
     
 
-    $("#REST-response").text( "The div is now loaded and can be manipulated." );
+    // $("#REST-response").text( "The div is now loaded and can be manipulated." );
 });
 
 
@@ -41,5 +41,102 @@ function getToRESTApi(id) {
 };
 
 function postToGraphQLApi(id){
+
+    $.ajax({
+        method: "POST",
+        url: "https://rocket-elevator-graphql-api.herokuapp.com/graphql",
+        contentType: "application/json",
+        data: JSON.stringify({
+          query: `{
+                    customerinfo (id: 2){
+                    customer{
+                        id
+                        companyName
+                        buildings{
+                        addressOfTheBuilding
+                        batteries{
+                            id
+                            status
+                            columns{
+                            id
+                            elevators{
+                                id
+                            }
+                            }
+                
+                        }
+                        }
+                    }
+                    }
+                    }`
+
+        }),
+        success: (d) => { 
+            alert("post sent!");
+            //         //JSON.parse(data);
+            //         //console.log(data.Buildings)
+            console.log(JSON.stringify(d))
+        }
+    })
+
+
+    // $.ajax({
+    //     method: "POST",
+    //     url: "https://rocket-elevator-graphql-api.herokuapp.com/graphql",
+    //     contentType: "application/json",
+    //     data: JSON.stringify({
+    //       query: `{newquery1 (id: ${id}) {
+    //     interventions{
+    //         startDateIntervention
+    //         }
+    //     }
+    // }`
+
+
+    //     }),
+    //     success: (d) => { 
+    //         alert("post sent!");
+    //         //         //JSON.parse(data);
+    //         //         //console.log(data.Buildings)
+    //         console.log(JSON.stringify(d))
+    //     }
+    // })
+    // $.ajax({
+    //     method: "POST",
+    //     url: "http://localhost:3002/graphql",
+    //     contentType: "application/json",
+    //     data: JSON.stringify({
+    //       query: `{
+    //                 customerinfo (id: 2){
+    //                 customer{
+    //                     id
+    //                     companyName
+    //                     buildings{
+    //                     addressOfTheBuilding
+    //                     batteries{
+    //                         id
+    //                         status
+    //                         columns{
+    //                         id
+    //                         elevators{
+    //                             id
+    //                         }
+    //                         }
+                
+    //                     }
+    //                     }
+    //                 }
+    //                 }
+    //                 }`
+
+    //     }),
+    //     success: (d) => { 
+    //         alert("post sent!");
+    //         //         //JSON.parse(data);
+    //         //         //console.log(data.Buildings)
+    //         console.log(JSON.stringify(d))
+    //     }
+    // })
     
+
 };

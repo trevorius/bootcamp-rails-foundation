@@ -4,9 +4,18 @@
 }
 
 .customer-form{
-    width: 10%;
+    position: relative;
+    width: 200px;
 }
 
 #REST-response{
-
+    position: relative;
+    width: 200px;
+}
+#GraphQL-response{
+    position: absolute;
+    float: left;
+    /* left: 210px; */
+    margin: 20px;
+    width: 70%;
 }
