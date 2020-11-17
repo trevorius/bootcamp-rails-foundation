@@ -7,173 +7,171 @@
     <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{ENV['google_api_key']}&callback=initMap&libraries=&v=weekly", defer: 'defer' %>
 
 
-<%
-=begin%>
+
  <script>
 
 
-    // // this doesn't work.
-    // // window.onload = initMap()
+    // this doesn't work.
+    // window.onload = initMap()
 
-    // // $('body').load(function(){
-    // //   initmap();
-    // // });
+    // $('body').load(function(){
+    //   initmap();
+    // });
 
-    // var map;
-    // var InforObj = [];
-    // var markers;
+    var map;
+    var InforObj = [];
+    var markers;
 
-    // <%= @lat = Address.find(Building.first[:address_id])[:latitude]%>
-    // <%= @lng = Address.find(Building.first[:address_id])[:longitude]%>
+    <%= @lat = Address.find(Building.first[:address_id])[:latitude]%>
+    <%= @lng = Address.find(Building.first[:address_id])[:longitude]%>
     
-    // //coordinates to center the map on.
-    //     var jslat = 38
+    //coordinates to center the map on.
+        var jslat = 38
       
-    //     var jslng = -85
+        var jslng = -85
 
-    // //initialise the map 
-    // function initMap() {
-    //   const map = new google.maps.Map(document.getElementById("maps"), {
-    //     zoom: 4,
-    //     center: { lat: jslat, lng: jslng },
-    //   });
+    //initialise the map 
+    function initMap() {
+      const map = new google.maps.Map(document.getElementById("maps"), {
+        zoom: 4,
+        center: { lat: jslat, lng: jslng },
+      });
     
-    //   //addMarkerInfo();
+      //addMarkerInfo();
 
-    //   // Add some markers to the map.
+      // Add some markers to the map.
       
-    //   // The map() method here has nothing to do with the Google Maps API. it iterates through the buildinginformation array
+      // The map() method here has nothing to do with the Google Maps API. it iterates through the buildinginformation array
            
-    //   markers = buildingInformation.map((buildingInform, i ) => {
-    //     console.log (buildingInform)
-    //     //prepare text for info window
-    //     const contentString = "<h6>Client : "+buildingInform.client+"</br>"+
-    //       buildingInform.address+"</h6>"+
-    //       "<ul>"+
-    //       "<li>latitude : "+buildingInform.coordinates.lat+"</li>"+
-    //       "<li>longitude : "+buildingInform.coordinates.lng+"</li>"+
-    //       "<li>floors : "+buildingInform.floors+"</li>"+
-    //       "<li>batteries : "+buildingInform.batteries+"</li>"+
-    //       "<li>column : "+buildingInform.columns+"</li>"+
-    //       "<li>elevators : "+buildingInform.elevators+"</li>"+
-    //       "<li>technical contact : "+buildingInform.tecnichalContact+"</p></ul>";
-    //     const infoWindow = new google.maps.InfoWindow({
-    //       content: contentString,
+      markers = buildingInformation.map((buildingInform, i ) => {
+        console.log (buildingInform)
+        //prepare text for info window
+        const contentString = "<h6>Client : "+buildingInform.client+"</br>"+
+          buildingInform.address+"</h6>"+
+          "<ul>"+
+          "<li>latitude : "+buildingInform.coordinates.lat+"</li>"+
+          "<li>longitude : "+buildingInform.coordinates.lng+"</li>"+
+          "<li>floors : "+buildingInform.floors+"</li>"+
+          "<li>batteries : "+buildingInform.batteries+"</li>"+
+          "<li>column : "+buildingInform.columns+"</li>"+
+          "<li>elevators : "+buildingInform.elevators+"</li>"+
+          "<li>technical contact : "+buildingInform.tecnichalContact+"</p></ul>";
+        const infoWindow = new google.maps.InfoWindow({
+          content: contentString,
           
-    //     })
-    //     //new marker
-    //     var marker = new google.maps.Marker({
-    //       position: buildingInform.coordinates,
-    //       map: map,
-    //     });
+        })
+        //new marker
+        var marker = new google.maps.Marker({
+          position: buildingInform.coordinates,
+          map: map,
+        });
 
 
 
-    //     //listener to open infowindow
-    //     marker.addListener("click",()=>{
-    //       closeOtherInfo();
-    //       infoWindow.open(map,marker);
-    //       InforObj[0] = infoWindow;
-    //     });
+        //listener to open infowindow
+        marker.addListener("click",()=>{
+          closeOtherInfo();
+          infoWindow.open(map,marker);
+          InforObj[0] = infoWindow;
+        });
 
 
-    //   });
-    //   //closes all open infowindows
-    //   function closeOtherInfo() {
-    //       if (InforObj.length > 0) {
-    //           InforObj[0].set("marker", null);
-    //           InforObj[0].close();
-    //           InforObj.length = 0;
-    //       }
-    //   }
+      });
+      //closes all open infowindows
+      function closeOtherInfo() {
+          if (InforObj.length > 0) {
+              InforObj[0].set("marker", null);
+              InforObj[0].close();
+              InforObj.length = 0;
+          }
+      }
 
-    //   // //marker.prototype.getDraggable = function() { return false; };
+      // //marker.prototype.getDraggable = function() { return false; };
 
-    //   // // Add a marker clusterer to manage the markers.
-    //   // var markerCluster = new MarkerClusterer(map, markers, {
-    //   //   imagePath:
-    //   //    `${window.location.origin}/m`,
-    //   // });
-    // }
-
-
-    // var buildingInformation = []
+      // // Add a marker clusterer to manage the markers.
+      // var markerCluster = new MarkerClusterer(map, markers, {
+      //   imagePath:
+      //    `${window.location.origin}/m`,
+      // });
+    }
 
 
-    // var floors, lat, lng, buildingCoordinates, buildingInfo, client, batteries, columns, elevators, tecnichalContact, address;
-
-    // //lots of inbedded ruby to extract information from the databases and feed to the infowindow
-    // <% i = 0 %>
-    // <% Building.last[:id].times do %>
-    //   <% i += 1 %>
-
-    //     <% @latitude = Address.find(Building.find(i)[:address_id])[:latitude] %> 
-    //     <% @longitude = Address.find(Building.find(i)[:address_id])[:longitude]%>
-    //     <% @address_of_building = Address.find(Building.find(i)[:address_id])[:number_and_street] + ", " + Address.find(Building.find(i)[:address_id])[:city]%>
-    //     <% @client = Customer.find(Building.find(i)[:customer_id])[:company_name]%>
-    //     <% @batteries_in_building = Battery.where(building_id: i).count %>
-    //     <% @floors = 0%>
-    //     <% @batteries = Battery.where(building_id: i)%>
-    //     <%  @columns_in_building = 0
-    //         @elevators_in_building = 0
-    //         @batteries.each do |battery|
-    //           @columns_in_battery = Column.where(battery_id: battery.id).count
-    //           @columns_in_building += @columns_in_battery
-
-    //           @elevators_in_column = 0
-    //           @columns = Column.where(battery_id: battery.id)
-    //           @columns.each do |column|
-    //             @elevators_in_column  = Elevator.where(column_id: column.id).count
-    //             @elevators_in_building += @elevators_in_column
-    //             @floors += column.number_of_floors_served 
-    //             puts @floors
-    //           end
-
-    //         end%>
+    var buildingInformation = []
 
 
-    //     <% @columns = Building.find(i).batteries.columns.count%>
-    //     <% @elevators = 1%>
-    //     <% @techContact = Building.find(i)[:full_name_of_the_technical_contact_for_the_building] %>
+    var floors, lat, lng, buildingCoordinates, buildingInfo, client, batteries, columns, elevators, tecnichalContact, address;
 
-    //     lat = <%= @latitude %> 
-    //     lng = <%= @longitude %>
+    //lots of inbedded ruby to extract information from the databases and feed to the infowindow
+    <% i = 0 %>
+    <% Building.last[:id].times do %>
+      <% i += 1 %>
+
+        <% @latitude = Address.find(Building.find(i)[:address_id])[:latitude] %> 
+        <% @longitude = Address.find(Building.find(i)[:address_id])[:longitude]%>
+        <% @address_of_building = Address.find(Building.find(i)[:address_id])[:number_and_street] + ", " + Address.find(Building.find(i)[:address_id])[:city]%>
+        <% @client = Customer.find(Building.find(i)[:customer_id])[:company_name]%>
+        <% @batteries_in_building = Battery.where(building_id: i).count %>
+        <% @floors = 0%>
+        <% @batteries = Battery.where(building_id: i)%>
+        <%  @columns_in_building = 0
+            @elevators_in_building = 0
+            @batteries.each do |battery|
+              @columns_in_battery = Column.where(battery_id: battery.id).count
+              @columns_in_building += @columns_in_battery
+
+              @elevators_in_column = 0
+              @columns = Column.where(battery_id: battery.id)
+              @columns.each do |column|
+                @elevators_in_column  = Elevator.where(column_id: column.id).count
+                @elevators_in_building += @elevators_in_column
+                @floors += column.number_of_floors_served 
+                puts @floors
+              end
+
+            end%>
+
+
+        <% @columns = Building.find(i).batteries.columns.count%>
+        <% @elevators = 1%>
+        <% @techContact = Building.find(i)[:full_name_of_the_technical_contact_for_the_building] %>
+
+        lat = <%= @latitude %> 
+        lng = <%= @longitude %>
 
         
-    //     client = "<%= @client%>"
-    //     batteries = <%= @batteries_in_building %>
-    //     columns = <%= @columns_in_building %>
-    //     elevators = <%= @elevators_in_building %>
-    //     tecnichalContact = "<%= @techContact%>"
-    //     address = "<%= @address_of_building%>"
-    //     floors  = <%= @floors%>
+        client = "<%= @client%>"
+        batteries = <%= @batteries_in_building %>
+        columns = <%= @columns_in_building %>
+        elevators = <%= @elevators_in_building %>
+        tecnichalContact = "<%= @techContact%>"
+        address = "<%= @address_of_building%>"
+        floors  = <%= @floors%>
 
-    //     //create building stats for infowindow
-    //     buildingInfo = {
-    //       coordinates:{
-    //         lat: lat,
-    //         lng: lng
-    //         },
-    //       client: client,
-    //       batteries: batteries,
-    //       columns: columns,
-    //       elevators: elevators,
-    //       tecnichalContact: tecnichalContact,
-    //       address: address,
-    //       floors: floors,
-    //     }
-    //     buildingInformation.push(buildingInfo)
+        //create building stats for infowindow
+        buildingInfo = {
+          coordinates:{
+            lat: lat,
+            lng: lng
+            },
+          client: client,
+          batteries: batteries,
+          columns: columns,
+          elevators: elevators,
+          tecnichalContact: tecnichalContact,
+          address: address,
+          floors: floors,
+        }
+        buildingInformation.push(buildingInfo)
 
        
-    //    console.log(buildingInfo.coordinates)
+       console.log(buildingInfo.coordinates)
 
-    // <% end %>
+    <% end %>
 
   
 
         </script> 
-<%
-=end%>  
+
 
 
      
