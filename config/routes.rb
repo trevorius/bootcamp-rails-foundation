@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :interventions
   devise_for :admin_users, ActiveAdmin::Devise.config
   
   
@@ -33,6 +34,7 @@ Rails.application.routes.draw do
   get 'index' => 'pages#index'
   get 'admin_root' => 'map#index'
   get 'customer' => 'elevators#index'
+  get 'interventionform' => 'interventions#interventionform'
 
   # POST routes
 
