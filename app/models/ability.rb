@@ -39,6 +39,15 @@ class Ability
         
 
       end
+      
+      if user.technician?
+        # can :read, interventionform
+        can :read, AdminUser, id: user.id
+        can :read, Employee, admin_user_id: user.id
+
+
+      end
+
 
       if user.admin?
         can :manage, :all

@@ -1,0 +1,99 @@
+<body>
+
+    <% pp $customerList %>
+
+    <form id="newi-ntervention">
+
+        <div class="row Customer">
+            <div class="customer col-sm-8 col-md-5 col-lg-4">
+            <label class="form-label" for="customer-ID"> Customer ID number </label>
+            <select class="form-control pointer" id="customer-ID">
+                <option value="">--- Select ---</option>
+                
+                <%= customers = Customer.all %>
+                    <%= customers.count do |customer| %>
+                        <%= @customerID = customer.id %>
+                        <%= @customerName = customer.company_name %>
+                        <%= @customerValue = @customerID.to_s + " -> " + @customerName %>
+
+
+                        <option value=<%= @customerValue%> > <%= @customerValue%> </option>
+
+
+                    <% end %>
+
+                
+            </select>
+
+            </div>
+        </div>
+        <div class="row Building-details">
+            <div class="building col-md-3">
+            <label class="form-label" for="building-ID"> Building ID number </label>
+            <select class="form-control pointer" id="building-ID">            
+                <option value="">--- Select ---</option>
+                <option value="Residential">Residential</option>
+                <option value="Corporate">Corporate</option>
+                <option value="Commercial">Commercial</option>
+                <option value="Hybrid">Hybrid</option>
+            </select>
+            </div>
+            <div class="batterie col-md-3">
+            <label class="form-label " for="batterie-ID"> Batterie ID number </label>
+            <select class="form-control pointer" id="batterie-ID">
+                <option value="">--- Select ---</option>
+                <option value="Residential">Residential</option>
+                <option value="Corporate">Corporate</option>
+                <option value="Commercial">Commercial</option>
+                <option value="Hybrid">Hybrid</option>
+            </select>
+            </div>
+            <div class="column col-md-3">
+            <label class="form-label" for="column-ID"> Column ID number </label>
+            <select class="form-control pointer" id="column-ID">
+                <option value="">--- Select ---</option>
+                <option value="Residential">Residential</option>
+                <option value="Corporate">Corporate</option>
+                <option value="Commercial">Commercial</option>
+                <option value="Hybrid">Hybrid</option>
+            </select>
+
+            </div>
+            <div class="elevator col-md-3">
+            <label class="form-label" for="elevator-ID"> Elevator ID number </label>
+            <select class="form-control pointer" id="elevator-ID">
+                <option value="">--- Select ---</option>
+                <option value="Residential">Residential</option>
+                <option value="Corporate">Corporate</option>
+                <option value="Commercial">Commercial</option>
+                <option value="Hybrid">Hybrid</option>
+            </select>
+            </div>
+        </div>
+        <div class="row intervention">
+            <div class="employee col-lg-4">
+            <label class="form-label" for="employee-ID"> Employee ID number </label>
+            <select class="form-control pointer" id="employee-ID">
+                <option value="">--- Select ---</option>
+                <option value="Residential">Residential</option>
+                <option value="Corporate">Corporate</option>
+                <option value="Commercial">Commercial</option>
+                <option value="Hybrid">Hybrid</option>
+            </select>
+            </div>
+        </div>
+        <div class=" row description col-lg-8">
+            <label class="form-label" for="description-ID"> Description </label>
+			<textarea required maxlength="10000" rows="8" class="form-control" id="description-ID"></textarea>
+        </div>
+
+    </form>
+
+
+
+
+
+
+
+
+</body>
