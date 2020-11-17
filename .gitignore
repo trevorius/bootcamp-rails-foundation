@@ -132,3 +132,5 @@ yarn-debug.log*
 /config/*.yml
 !/config/cable.yml
 !/config/storage.yml
+
+/app/assets/audio/first.wav

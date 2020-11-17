@@ -12453,7 +12453,7 @@ j=1
             first_name: Faker::Name.first_name,
             last_name: Faker::Name.last_name,
             title: "technician",
-            email: Faker::Internet.email,   
+            email: eMail,   
             admin_user_id: i,
             phone_number: Faker::PhoneNumber.cell_phone
 

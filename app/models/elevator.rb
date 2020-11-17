@@ -6,7 +6,9 @@ require 'slack-notifier'
 class Elevator < ApplicationRecord
     belongs_to :column
     belongs_to :customer
-    after_save :send_sms
+
+    # #COMMENT IN OUT FOR TWILIO
+    # after_save :send_sms
 
     def send_sms()
         acct_sid = ENV['TWILIO_ACCT_SID']
@@ -31,6 +33,7 @@ class Elevator < ApplicationRecord
         )
     end
     
+    # COMMENT IN OUT FOR SLACK
     before_update :slack_notifier
 
 

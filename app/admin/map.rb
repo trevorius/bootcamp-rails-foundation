@@ -72,6 +72,7 @@ ActiveAdmin.register_page "Map" do
     puts text_for_Watson
     puts "________________________________________________________________________________________________________"
 
+    # # COMMENT IN AND OUT FOR WATSON TO WORK
     # authenticator = Authenticators::IamAuthenticator.new(
     # apikey: ENV['ibm_watson_key']
     # )
