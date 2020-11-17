@@ -2,6 +2,9 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.5'
+
+gem 'figaro'
+
 gem 'http'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -114,7 +117,7 @@ gem 'sendgrid-ruby'
 
 gem 'sendgrid-actionmailer'
 # figaro to create env variables
-gem 'figaro'
+
 
 gem 'twilio-ruby', '~> 5.41.0'
 
