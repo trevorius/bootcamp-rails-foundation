@@ -7,10 +7,11 @@
     <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{ENV['google_api_key']}&callback=initMap&libraries=&v=weekly", defer: 'defer' %>
 
 
-
+<%
+=begin%>
  <script>
 
-  
+
     // // this doesn't work.
     // // window.onload = initMap()
 
@@ -171,7 +172,8 @@
   
 
         </script> 
-  
+<%
+=end%>  
 
 
      

@@ -23,9 +23,10 @@ namespace :export do
          addresses  = Address.all
 
         # conn = PG::Connection.open(dbname: "datawarehouse_development")
-        conn = PG::Connection.open(host: ENV["DB2_Host"], user: ENV["DB2_USERNAME"], password: ENV["DB2_PASSWORD"], dbname: ENV["second_db"])
- 
-         conn.exec("TRUNCATE \"dimcustomers\" RESTART IDENTITY")
+        # conn = PG::Connection.open(host: ENV["DB2_Host"], user: ENV["DB2_USERNAME"], password: ENV["DB2_PASSWORD"], dbname: ENV["second_db"])
+        conn = PG::Connection.open(host: "codeboxx-postgresql.cq6zrczewpu2.us-east-1.rds.amazonaws.com", user: "codeboxx", password: "Codeboxx1!", dbname: "pg_Trevor_Kitchen_team2")
+
+        conn.exec("TRUNCATE \"dimcustomers\" RESTART IDENTITY")
  
          table.each do |row|
             # define the maximum range of elevators to select for safety can be uncommented.
@@ -79,7 +80,9 @@ namespace :export do
         table = Lead.all
         
         # conn = PG::Connection.open(dbname: ENV["second_db"] )
-        conn = PG::Connection.open(host: ENV["DB2_Host"], user: ENV["DB2_USERNAME"], password: ENV["DB2_PASSWORD"], dbname: ENV["second_db"])
+        # conn = PG::Connection.open(host: ENV["DB2_Host"], user: ENV["DB2_USERNAME"], password: ENV["DB2_PASSWORD"], dbname: ENV["second_db"])
+        conn = PG::Connection.open(host: "codeboxx-postgresql.cq6zrczewpu2.us-east-1.rds.amazonaws.com", user: "codeboxx", password: "Codeboxx1!", dbname: "pg_Trevor_Kitchen_team2")
+
 
         conn.exec("TRUNCATE \"factcontacts\" RESTART IDENTITY")
 
@@ -99,7 +102,9 @@ namespace :export do
         table = Quote.all
 
         # conn = PG::Connection.open(dbname: "datawarehouse_development")
-        conn = PG::Connection.open(host: ENV["DB2_Host"], user: ENV["DB2_USERNAME"], password: ENV["DB2_PASSWORD"], dbname: ENV["second_db"])
+        # conn = PG::Connection.open(host: ENV["DB2_Host"], user: ENV["DB2_USERNAME"], password: ENV["DB2_PASSWORD"], dbname: ENV["second_db"])
+        conn = PG::Connection.open(host: "codeboxx-postgresql.cq6zrczewpu2.us-east-1.rds.amazonaws.com", user: "codeboxx", password: "Codeboxx1!", dbname: "pg_Trevor_Kitchen_team2")
+
 
         conn.exec("TRUNCATE \"factquotes\" RESTART IDENTITY")
 
@@ -122,7 +127,8 @@ namespace :export do
     task factelevator: :environment do
         table = Elevator.all
         # conn = PG::Connection.open(dbname: "datawarehouse_development")
-        conn = PG::Connection.open(host: ENV["DB2_Host"], user: ENV["DB2_USERNAME"], password: ENV["DB2_PASSWORD"], dbname: ENV["second_db"])
+        # conn = PG::Connection.open(host: ENV["DB2_Host"], user: ENV["DB2_USERNAME"], password: ENV["DB2_PASSWORD"], dbname: ENV["second_db"])
+        conn = PG::Connection.open(host: "codeboxx-postgresql.cq6zrczewpu2.us-east-1.rds.amazonaws.com", user: "codeboxx", password: "Codeboxx1!", dbname: "pg_Trevor_Kitchen_team2")
 
         conn.exec("TRUNCATE \"factelevators\" RESTART IDENTITY")
 
