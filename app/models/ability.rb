@@ -5,9 +5,24 @@ class Ability
 
   def initialize(user)
 
+    p"___________________"
+    pp user
+    p"___________________"
 
     if user.present?
       if user.customer?
+
+        p"___________________"
+        p "user is a customer"
+        p"___________________"
+
+        # can :manage, :all
+        # cannot :destroy, Employee
+        # cannot :update, AdminUser
+
+        # redirect_to 'admin/elevators/index'
+
+     
 
         customerID = Customer.where(admin_user_id: user.id).take[:id]
         

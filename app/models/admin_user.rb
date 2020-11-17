@@ -27,7 +27,7 @@ class AdminUser < ApplicationRecord
   # Assign customer role if user is a Customer
   def customer?
     
-    customers = Customer.where(["email_company_contact = ?", email])
+    customers = Customer.where(email_company_contact: email)
     #customer_id = Customer.find()
     if customers.size > 0
       true

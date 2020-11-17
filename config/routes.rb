@@ -23,13 +23,16 @@ Rails.application.routes.draw do
   root 'pages#index'
   #admin_root ''
 
+  
+
+
   # GET routes
   get 'quote' => 'quotes#quote'
   get 'corporate' => 'pages#corporate'
   get 'residential' => 'pages#residential'
   get 'index' => 'pages#index'
   get 'admin_root' => 'map#index'
-  
+  get 'customer' => 'elevators#index'
 
   # POST routes
 

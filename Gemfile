@@ -132,3 +132,4 @@ gem 'dropbox_api'
 
 gem 'rubocop-faker'
 
+gem 'active_bootstrap_skin'
