@@ -10,7 +10,11 @@ class InterventionsController < InheritedResources::Base
 
       if @intervention.save
 
-        format.html { redirect_to root_path, notice: "Save process completed!" }
+        pp @intervention
+
+        # format.html {  redirect_to root_path , notice: "Save process completed!" }
+        format.html {  flash.now[:notice]="Save process completed!" }
+
         format.json { render json: @intervention, status: :created, location: @intervention }
         
        
@@ -28,7 +32,7 @@ class InterventionsController < InheritedResources::Base
   private
 
     def intervention_params
-      params.require(:interventions).permit(:customer_id, :buidling_id, :battery_id, :column_id, :elevator_id, :employeeId, :start_date, :end_date, :result, :report, :status)
+      params.require(:interventions).permit(:author, :customer_id, :buidling_id, :battery_id, :column_id, :elevator_id, :employeeId, :start_date, :end_date, :result, :report, :status)
     end
 
 end
