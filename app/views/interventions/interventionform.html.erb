@@ -1,3 +1,7 @@
+
+
+
+
 <body>
     
     <div id="header" class="navbar-toggleable-md sticky header-md clearfix" data-trigger="#main_nav">
@@ -83,17 +87,11 @@
 
         <div class="row Customer ml-9 mr-7">
             <div class="customer col-sm-8 col-md-5 col-lg-4 ">
-            <label class="form-label" for="customer-ID"> Customer ID number </label>
-            <select class="form-control pointer" id="customer-ID" name="interventions[customer_id]">
+            <label class="form-label" for="customer-id"> Customer ID number </label>
+            <select class="form-control pointer" id="customer-id" name="interventions[customer_id]">
                 <option value="">--- Select ---</option>
                 
-                <%= customers = Customer.all %>
-                    <%= customers.count do |customer| %>
-                        <%= @customerID = customer.id %>
-                        <%= @customerName = customer.company_name %>
-                        <%= @customerValue = @customerID.to_s + " -> " + @customerName %>
-                        <option value=<%= @customerValue%> > <%= @customerValue%> </option>
-                <% end %>
+               
 
                 
             </select>
@@ -105,41 +103,28 @@
             <label class="form-label" for="building-ID"> Building ID number </label>
             <select class="form-control pointer" id="building-ID">            
                 <option value="">--- Select ---</option>
-                <option value="Residential">Residential</option>
-                <option value="Corporate">Corporate</option>
-                <option value="Commercial">Commercial</option>
-                <option value="Hybrid">Hybrid</option>
+                
             </select>
             </div>
             <div class="batterie col-md-3">
             <label class="form-label " for="batterie-ID"> Batterie ID number </label>
             <select class="form-control pointer" id="batterie-ID">
-                <option value="">--- Select ---</option>
-                <option value="Residential">Residential</option>
-                <option value="Corporate">Corporate</option>
-                <option value="Commercial">Commercial</option>
-                <option value="Hybrid">Hybrid</option>
+                <option value="">NULL</option>
             </select>
             </div>
             <div class="column col-md-3">
             <label class="form-label" for="column-ID"> Column ID number </label>
             <select class="form-control pointer" id="column-ID">
-                <option value="">--- Select ---</option>
-                <option value="Residential">Residential</option>
-                <option value="Corporate">Corporate</option>
-                <option value="Commercial">Commercial</option>
-                <option value="Hybrid">Hybrid</option>
+                <option value="">NULL</option>
+                
             </select>
 
             </div>
             <div class="elevator col-md-3">
             <label class="form-label" for="elevator-ID"> Elevator ID number </label>
             <select class="form-control pointer" id="elevator-ID">
-                <option value="">--- Select ---</option>
-                <option value="Residential">Residential</option>
-                <option value="Corporate">Corporate</option>
-                <option value="Commercial">Commercial</option>
-                <option value="Hybrid">Hybrid</option>
+                <option value="">NULL</option>
+                
             </select>
             </div>
         </div>
@@ -147,11 +132,8 @@
             <div class="employee col-lg-4">
             <label class="form-label" for="employee-ID"> Employee ID number </label>
             <select class="form-control pointer" id="employee-ID">
-                <option value="">--- Select ---</option>
-                <option value="Residential">Residential</option>
-                <option value="Corporate">Corporate</option>
-                <option value="Commercial">Commercial</option>
-                <option value="Hybrid">Hybrid</option>
+                <option value="">NULL</option>
+                
             </select>
             </div>
         </div>
@@ -161,12 +143,104 @@
         </div>
 
     </form>
-
+<div class="row col-md-12 ml-15">
 <a href="index.html">BACK TO HOME</a>
+</div>
 
 
+<script>
+
+var customerList;
 
 
+customerList = <%=raw Customer.all.to_json %>;
+console.log(customerList);
+buildingList = <%= raw Building.all.to_json %>;
+console.log(buildingList);
+columnList = <%= raw Column.all.to_json %>;
+console.log(columnList);
+elevatorList = <%= raw Elevator.all.to_json%>;
+employeeList = <%= raw Employee.all.to_json%>;
+batteryList = <%= raw Battery.all.to_json%>;
+console.log(customerList[0].id);
+
+
+//function to get batterie, column and elevator lists
+function getListFromPreviousID (selector, previousID,list){
+    //iterate through list
+    for (var i = 0; i< Object.keys(list).length; i++){
+        var val = list[i].id
+        //select desired elements
+        if (list[i].building_id == previousID || list[i].column_id == previousID || list[i].battery_id == previousID){
+             $(selector)
+                .append('<option value=' + val + '>' + val + '</option>');
+        }
+       
+    }
+
+}
+
+
+//function to create the building selector
+function getlistOfBuildings(customerID,selector){
+    //iterate list of buildings
+    for (var i = 0; i < Object.keys(buildingList).length; i++){
+        var val = buildingList[i].id        
+        var label = val + " -> " + buildingList[i].address_of_the_building
+        //select desired buildings
+        if (buildingList[i].customer_id == customerID){
+            $(selector)
+                .append('<option value=' + val + '>' + label + '</option>');
+        }
+    };
+
+};
+//create the selector form a list
+function createSelector(selector, list){
+
+    for (var i = 0 ; i < Object.keys(list).length; i++){
+        var val = list[i].id
+        if (list == customerList){
+        var label = val + " -> " + list[i].company_name
+        }
+        else if (list == employeeList){
+        var label = val + " -> " + list[i].first_name + " " + list[i].last_name
+        }
+        $(selector)
+            .append('<option value=' + val + '>' + label + '</option>')
+        }
+};
+
+$(function(){
+    createSelector("#customer-id", customerList);
+    createSelector("#employee-ID", employeeList);
+
+    // customer selection event handler
+    $("#customer-id").on('change',function(){
+        customerId =  $("#customer-id").val();
+        getlistOfBuildings(customerId,"#building-ID");
+    })
+    //building selection event handler
+    $("#building-ID").on('change', function(){
+        buildingId = $("#building-ID").val();
+        getListFromPreviousID("#batterie-ID", buildingId, batteryList);
+    })
+    //batterie selection event handler
+    $("#batterie-ID").on('change', function(){
+        batteryId = $("#batterie-ID").val();
+        getListFromPreviousID("#column-ID", batteryId, columnList);
+    })
+    //column selection event handler
+    $('#column-ID').on('change', function(){
+        columnID = $('#column-ID').val();
+        getListFromPreviousID("#elevator-ID", columnID, elevatorList)
+    })
+    //elevator selection event handler
+
+});
+
+ 
+</script>
 
 
 

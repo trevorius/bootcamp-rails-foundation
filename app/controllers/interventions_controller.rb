@@ -23,10 +23,7 @@ class InterventionsController < InheritedResources::Base
       end
     end
   end
-  def customerid
-    respond_to do |customerid|
-      
-  end
+  
 
   private
 
