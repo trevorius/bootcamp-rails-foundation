@@ -46,6 +46,7 @@ class Ability
         # can :read, InterventionForm
         can :read, AdminUser, id: user.id
         can :read, Employee, admin_user_id: user.id
+        can :read, Intervention, employee_id: Employee.where(admin_user_id: user.id).take[:id]
         can :update, Intervention, employee_id: Employee.where(admin_user_id: user.id).take[:id]
 
 
@@ -64,7 +65,7 @@ class Ability
       #redirect_to root_path
     #end
 
-    cannot [:create], [Lead, Quote, AdminUser]
+    cannot [:create], [Lead, Quote, AdminUser, Intervention]
     cannot [:update], [Lead, AdminUser]
     can :update, AdminUser, id: user.id
 
