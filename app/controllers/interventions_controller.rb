@@ -1,4 +1,6 @@
 class InterventionsController < InheritedResources::Base
+  before_action :set_quote, only: [:show, :edit, :update, :destroy]
+
 
   def create
     p params
