@@ -18,13 +18,13 @@ ActiveAdmin.register Intervention do
     # end
     index do
         id_column
-        column :author
+        # column :author
         column  :customer_id
         column  :buidling_id
         column  :battery_id
         column  :column_id
         column  :elevator_id
-        column  :employeeId
+        column  :employee_id
         column  :start_date
         column  :end_date
         column  :result
@@ -35,7 +35,7 @@ ActiveAdmin.register Intervention do
     filter :author
     filter :customer_id
     filter :buidling_id
-    filter :employeeId
+    filter :employee_id
   
   end
   
