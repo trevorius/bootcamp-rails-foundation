@@ -1,13 +1,90 @@
 <body>
+    
+    <div id="header" class="navbar-toggleable-md sticky header-md clearfix" data-trigger="#main_nav">
 
+        <!-- TOP NAV -->
+        <header id="topNav">
+            <div class="container">
+
+                <!-- Mobile Menu Button -->
+            
+                <!-- Logo -->
+                <a class="logo float-left scrollTo" href="index.html">
+                    <%= image_tag("rocketelevatorassets/R2.png")%>
+                </a>
+
+                <div class="navbar-collapse collapse float-right nav-main-collapse submenu-dark">
+
+                    <nav class="nav-main">
+
+                        <ul id="topMain" class="nav nav-pills nav-main nav-onepage">
+                            <li class="nav-item active"><!-- HOME -->
+                                <a class="nav-link" href="index.html">
+                                    HOME
+                                </a>
+                            </li>
+                            <li><!-- admin -->
+                                <a href = "/admin">
+                                    ADMIN
+                                </a>
+                                <ul class="dropdown-menu white-space=nowrap">
+                                    <li><a href="/admin/login">login</a></li>
+                                    <li><a href="/admin/logout">logout</a></li>
+                                    <li><a href="/admin/users">view account</a></li>
+                                </ul>
+                            </li>
+                            <li><!-- SERVICES -->
+                                <a href="index.html#services">
+                                    SERVICES
+                                </a>
+                                <ul class="dropdown-menu white-space=nowrap">
+                                    <li><a href="residential.html">Residential</a></li>
+                                    <li><a href="corporate.html">Corporate & Commercial</a></li>
+                                    <li><a href="quote.html">Get A Quote</a></li>
+                                </ul>
+                            </li>
+                            <li><!-- WORK -->
+                                <a href="index.html#work">
+                                    PORTFOLIO
+                                </a>
+                            </li>
+                            <li><!-- NEWS -->
+                                <a href="index.html#news">
+                                    NEWS
+                                </a>
+                            </li>
+                            <li><!-- CLIENTS -->
+                                <a href="index.html#clients">
+                                    CLIENTS
+                                </a>
+                            </li>
+                            <li><!-- CONTACT -->
+                                <a href="index.html#contact">
+                                    CONTACT
+                                </a>
+                            </li>
+                            <li><!-- INTERVENTION -->
+                                <a href="interventionform.html">
+                                    INTERVENTION
+                                </a>
+                            </li>
+                        </ul>
+
+                    </nav>
+                </div>
+
+            </div>
+        </header>
+        <!-- /Top Nav -->
+    </div>
     <% pp $customerList %>
 
-    <form id="newi-ntervention">
+    <form id="new-intervention" method="post" action="intervention/create" enctype="multipart/form-data">
 
         <div class="row Customer ml-9 mr-7">
             <div class="customer col-sm-8 col-md-5 col-lg-4 ">
             <label class="form-label" for="customer-ID"> Customer ID number </label>
-            <select class="form-control pointer" id="customer-ID">
+            <select class="form-control pointer" id="customer-ID" name="interventions[customer_id]">
                 <option value="">--- Select ---</option>
                 
                 <%= customers = Customer.all %>
@@ -15,12 +92,8 @@
                         <%= @customerID = customer.id %>
                         <%= @customerName = customer.company_name %>
                         <%= @customerValue = @customerID.to_s + " -> " + @customerName %>
-
-
                         <option value=<%= @customerValue%> > <%= @customerValue%> </option>
-
-
-                    <% end %>
+                <% end %>
 
                 
             </select>
@@ -89,6 +162,7 @@
 
     </form>
 
+<a href="index.html">BACK TO HOME</a>
 
 
 

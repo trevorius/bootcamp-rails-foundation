@@ -40,6 +40,8 @@ Rails.application.routes.draw do
 
   post 'quote/create' => 'quotes#create'
   post 'contact/create' => 'leads#create'
+  post 'intervention/create' => 'interventions#create'
+  post 'intervention/customer-id' => 'interventions#customerid'
   # post 'pages/twilio' => 'pages#twilio'
 end
 

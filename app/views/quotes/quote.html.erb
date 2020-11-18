@@ -42,27 +42,27 @@
 						</button>
 
 						<!-- Logo -->
-						<a class="logo float-left" href="index.html">
-							<%= image_tag "rocketelevatorassets/R2.png", alt:"" %>
+						<a class="logo float-left scrollTo" href="#top">
+							<%= image_tag("rocketelevatorassets/R2.png")%>
 						</a>
 
 						<div class="navbar-collapse collapse float-right nav-main-collapse submenu-dark">
 							<nav class="nav-main">
 
 								<ul id="topMain" class="nav nav-pills nav-main nav-onepage">
-                                    <li class="active"><!-- HOME -->
+									<li class="active"><!-- HOME -->
 										<a href="index.html">
 											HOME
 										</a>
 									</li>
-                                    <li><!-- admin -->
+									<li><!-- admin -->
 										<a href = "/admin">
 											ADMIN
 										</a>
 										<ul class="dropdown-menu white-space=nowrap">
 											<li><a href="/admin/login">login</a></li>
 											<li><a href="/admin/logout">logout</a></li>
-											<li><a href="/admin/elevators">view elevators</a></li>
+											<li><a href="/admin/users">view account</a></li>
 										</ul>
 									</li>
 									<li><!-- SERVICES -->
@@ -72,6 +72,7 @@
 										<ul class="dropdown-menu white-space=nowrap">
 											<li><a href="residential.html">Residential</a></li>
 											<li><a href="corporate.html">Corporate & Commercial</a></li>
+											<li><a href="quote.html">Get A Quote</a></li>
 										</ul>
 									</li>
 									<li><!-- WORK -->
@@ -92,6 +93,11 @@
 									<li><!-- CONTACT -->
 										<a href="index.html#contact">
 											CONTACT
+										</a>
+									</li>
+									<li><!-- INTERVENTION -->
+										<a href="interventionform.html">
+											INTERVENTION
 										</a>
 									</li>
 								</ul>
