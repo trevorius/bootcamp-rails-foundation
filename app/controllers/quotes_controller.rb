@@ -34,11 +34,7 @@ class QuotesController < ApplicationController
     # POST /create/quote.json
     def create 
         @quote = Quote.new(params[:quote])
-
         
-        
-
-
         respond_to do |format|
             @quote.update!(quote_params)
             # p '------------------'

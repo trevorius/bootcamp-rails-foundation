@@ -5,6 +5,10 @@ class Column < ApplicationRecord
         "#{id}"
     end
     belongs_to :battery 
-    belongs_to :customer   
+    belongs_to :customer 
+    has_many :interventions
+    def display_name
+        "#{id}"
+    end 
     
 end

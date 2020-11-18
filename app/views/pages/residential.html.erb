@@ -43,9 +43,8 @@
 						</button>
 
 						<!-- Logo -->
-						<a class="logo float-left" href="index.html">
-
-							<%=image_tag("rocketelevatorassets/R2.png", alt:"client") %>
+						<a class="logo float-left scrollTo" href="#top">
+							<%= image_tag("rocketelevatorassets/R2.png")%>
 						</a>
 
 						<div class="navbar-collapse collapse float-right nav-main-collapse submenu-dark">
@@ -61,12 +60,18 @@
 										<a href = "/admin">
 											ADMIN
 										</a>
+										<ul class="dropdown-menu white-space=nowrap">
+											<li><a href="/admin/login">login</a></li>
+											<li><a href="/admin/logout">logout</a></li>
+											<li><a href="/admin/users">view account</a></li>
+										</ul>
 									</li>
 									<li><!-- SERVICES -->
 										<a href="index.html#services">
 											SERVICES
 										</a>
 										<ul class="dropdown-menu white-space=nowrap">
+											<li><a href="residential.html">Residential</a></li>
 											<li><a href="corporate.html">Corporate & Commercial</a></li>
 											<li><a href="quote.html">Get A Quote</a></li>
 										</ul>
@@ -91,7 +96,13 @@
 											CONTACT
 										</a>
 									</li>
+									<li><!-- INTERVENTION -->
+										<a href="interventionform.html">
+											INTERVENTION
+										</a>
+									</li>
 								</ul>
+
 							</nav>
 						</div>
 

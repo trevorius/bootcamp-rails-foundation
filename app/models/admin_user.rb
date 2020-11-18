@@ -15,23 +15,33 @@ class AdminUser < ApplicationRecord
 
   #belongs_to :quote
 
-  # Assign admin role if user is an Employee
+  # Assign admin role if user is an Employee and not a tchnician
   def admin?
-    employees = Employee.where(["email = ?", email])
-    if employees.size > 0
-      true
-    else
+
+    if Employee.where(email: email).take[:title] != "technician"
+      employees = Employee.where(["email = ?", email])
+      if employees.size > 0
+        true
+      else
+      end
     end
   end
 
   # Assign customer role if user is a Customer
   def customer?
     
-    customers = Customer.where(["email_company_contact = ?", email])
+    customers = Customer.where(email_company_contact: email)
     #customer_id = Customer.find()
     if customers.size > 0
       true
     else
+    end
+  end
+
+  # Assign a technician role
+  def technician?
+    if Employee.where(email: email).take[:title] == "technician"
+      true
     end
   end
 

@@ -7,6 +7,10 @@ class Battery < ApplicationRecord
     end
     belongs_to :customer
     
+    has_many :interventions
+    def display_name
+        "#{id}"
+    end
     
 
         

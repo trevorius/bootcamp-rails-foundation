@@ -6,6 +6,10 @@ require 'slack-notifier'
 class Elevator < ApplicationRecord
     belongs_to :column
     belongs_to :customer
+    has_many :interventions
+    def display_name
+        "#{id}"
+    end 
 
     # #COMMENT IN OUT FOR TWILIO
     # after_save :send_sms

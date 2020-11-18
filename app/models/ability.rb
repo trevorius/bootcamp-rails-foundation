@@ -5,9 +5,24 @@ class Ability
 
   def initialize(user)
 
+    p"___________________"
+    pp user
+    p"___________________"
 
     if user.present?
       if user.customer?
+
+        p"___________________"
+        p "user is a customer"
+        p"___________________"
+
+        # can :manage, :all
+        # cannot :destroy, Employee
+        # cannot :update, AdminUser
+
+        # redirect_to 'admin/elevators/index'
+
+     
 
         customerID = Customer.where(admin_user_id: user.id).take[:id]
         
@@ -24,6 +39,19 @@ class Ability
         
 
       end
+      
+      if user.technician?
+       
+        
+        # can :read, InterventionForm
+        can :read, AdminUser, id: user.id
+        can :read, Employee, admin_user_id: user.id
+        can :read, Intervention, employee_id: Employee.where(admin_user_id: user.id).take[:id]
+        can :update, Intervention, employee_id: Employee.where(admin_user_id: user.id).take[:id]
+
+
+      end
+
 
       if user.admin?
         can :manage, :all
@@ -37,7 +65,7 @@ class Ability
       #redirect_to root_path
     #end
 
-    cannot [:create], [Lead, Quote, AdminUser]
+    cannot [:create], [Lead, Quote, AdminUser, Intervention]
     cannot [:update], [Lead, AdminUser]
     can :update, AdminUser, id: user.id
 

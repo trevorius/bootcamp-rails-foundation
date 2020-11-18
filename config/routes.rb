@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :interventions
   devise_for :admin_users, ActiveAdmin::Devise.config
   
   
@@ -23,18 +24,24 @@ Rails.application.routes.draw do
   root 'pages#index'
   #admin_root ''
 
+  
+
+
   # GET routes
   get 'quote' => 'quotes#quote'
   get 'corporate' => 'pages#corporate'
   get 'residential' => 'pages#residential'
   get 'index' => 'pages#index'
   get 'admin_root' => 'map#index'
-  
+  get 'customer' => 'elevators#index'
+  get 'interventionform' => 'interventions#interventionform'
 
   # POST routes
 
   post 'quote/create' => 'quotes#create'
   post 'contact/create' => 'leads#create'
+  post 'intervention/create' => 'interventions#create'
+  post 'intervention/customer-id' => 'interventions#customerid'
   # post 'pages/twilio' => 'pages#twilio'
 end
 

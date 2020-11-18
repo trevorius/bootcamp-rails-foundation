@@ -18,7 +18,7 @@
  
  *= require_self
 
- *= require_bootstrap-sprockets
+//  *= require_bootstrap-sprockets
 
 
  */
@@ -30,6 +30,7 @@
 //to stop having the fontawsome 404
  @import "font-awesome-sprockets";
  @import "font-awesome";
+//  @import "./bootstrap/";
 
  @import "map";
 

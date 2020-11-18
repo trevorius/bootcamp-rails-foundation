@@ -1,0 +1,355 @@
+
+
+
+
+<body>
+    
+    <div id="header" class="navbar-toggleable-md sticky header-md clearfix" data-trigger="#main_nav">
+
+        <!-- TOP NAV -->
+        <header id="topNav">
+            <div class="container">
+
+                <!-- Mobile Menu Button -->
+            
+                <!-- Logo -->
+                <a class="logo float-left scrollTo" href="index.html">
+                    <%= image_tag("rocketelevatorassets/R2.png")%>
+                </a>
+
+                <div class="navbar-collapse collapse float-right nav-main-collapse submenu-dark">
+
+                    <nav class="nav-main">
+
+                        <ul id="topMain" class="nav nav-pills nav-main nav-onepage">
+                            <li class="nav-item active"><!-- HOME -->
+                                <a class="nav-link" href="index.html">
+                                    HOME
+                                </a>
+                            </li>
+                            <li><!-- admin -->
+                                <a href = "/admin">
+                                    ADMIN
+                                </a>
+                                <ul class="dropdown-menu white-space=nowrap">
+                                    <li><a href="/admin/login">login</a></li>
+                                    <li><a href="/admin/logout">logout</a></li>
+                                    <li><a href="/admin/users">view account</a></li>
+                                </ul>
+                            </li>
+                            <li><!-- SERVICES -->
+                                <a href="index.html#services">
+                                    SERVICES
+                                </a>
+                                <ul class="dropdown-menu white-space=nowrap">
+                                    <li><a href="residential.html">Residential</a></li>
+                                    <li><a href="corporate.html">Corporate & Commercial</a></li>
+                                    <li><a href="quote.html">Get A Quote</a></li>
+                                </ul>
+                            </li>
+                            <li><!-- WORK -->
+                                <a href="index.html#work">
+                                    PORTFOLIO
+                                </a>
+                            </li>
+                            <li><!-- NEWS -->
+                                <a href="index.html#news">
+                                    NEWS
+                                </a>
+                            </li>
+                            <li><!-- CLIENTS -->
+                                <a href="index.html#clients">
+                                    CLIENTS
+                                </a>
+                            </li>
+                            <li><!-- CONTACT -->
+                                <a href="index.html#contact">
+                                    CONTACT
+                                </a>
+                            </li>
+                            <li><!-- INTERVENTION -->
+                                <a href="interventionform.html">
+                                    INTERVENTION
+                                </a>
+                            </li>
+                        </ul>
+
+                    </nav>
+                </div>
+
+            </div>
+        </header>
+        <!-- /Top Nav -->
+    </div>
+
+    <div >
+        <a id="login-message" class="hide-1 ml-9 mr-7  " href="/admin/login">Log in to submit an intervention</a>
+
+    </div>
+    
+    <form id="new-intervention" method="post" action="intervention/create" enctype="multipart/form-data">
+        <fieldset>
+
+            <div class="row author col-sm-8 col-md-5 col-lg-4 ml-9 mr-7 ">
+                <label for="author-id" class="form-label"> Author of intervention : </label>
+                <input  class="form-control pointer hide" type="number" id="author-id" name="interventions[author]" readonly >
+                <input class="form-control  " type="text" id="author-name" readonly placeholder="">
+
+            </div>
+
+            <div class="row Customer ml-9 mr-7">
+                <div class="customer col-sm-8 col-md-5 col-lg-4 ">
+                <label class="form-label" for="customer-id"> Customer </label>
+                <select required class="form-control pointer" id="customer-id" name="interventions[customer_id]">
+                    <option value="">--- Select ---</option>
+                    
+                
+
+                    
+                </select>
+
+                </div>
+            </div>
+            <div class="row Building-details ml-9 mr-7">
+                <div class="hide-1 building col-md-3" id="building">
+                <label class="form-label" for="building-ID"> Building </label>
+                <select required class="form-control pointer" id="building-ID" name="interventions[building_id]">            
+                    <option value="">--- Select ---</option>
+                    
+                </select>
+                </div>
+                <div class="batterie col-md-3 hide-1">
+                <label class="form-label " for="batterie-ID"> Batterie ID number </label>
+                <select class="form-control pointer" id="batterie-ID" name="interventions[battery_id]">
+                    <option value="">NULL</option>
+                </select>
+                </div>
+                <div class="column col-md-3 hide-1">
+                <label class="form-label" for="column-ID"> Column ID number </label>
+                <select class="form-control pointer" id="column-ID" name="interventions[column_id]">
+                    <option value="">NULL</option>
+                    
+                </select>
+
+                </div>
+                <div class="elevator col-md-3 hide-1">
+                <label class="form-label" for="elevator-ID"> Elevator ID number </label>
+                <select class="form-control pointer" id="elevator-ID" name="interventions[elevator_id]">
+                    <option value="">NULL</option>
+                    
+                </select>
+                </div>
+            </div>
+            <div class="row intervention mr-7 ml-9 hide-1">
+                <div class="employee col-lg-4">
+                <label class="form-label" for="employee-ID"> Employee ID number </label>
+                <select class="form-control pointer" id="employee-ID" name="interventions[employee_id]">
+                    <option value="">NULL</option>
+                    
+                </select>
+                </div>
+            </div>
+            <div class=" row intervention hide-1 description col-lg-8 mr-7 ml-9 ">
+                <label class="form-label" for="description-ID"> Description </label>
+                <textarea required maxlength="10000" rows="8" class="form-control" id="description-ID" name="interventions[report]"></textarea>
+            </div>
+        </fieldset>
+
+        <div class="row ml-9 mr-7 ">
+            <div class="col-md-5 ml-9 ">
+                <button type="submit" class="btn btn-primary " id="create-intervention"><i class="fa fa-check"></i> Submit intervention </button>
+            </div>
+        </div>
+
+    </form>
+<div class="row col-md-5 ml-15">
+<a href="index.html" class="btn btn-red">BACK TO HOME</a>
+</div>
+
+<script>
+
+var customerList;
+
+
+customerList = <%=raw Customer.all.to_json %>;
+console.log(customerList);
+buildingList = <%= raw Building.all.to_json %>;
+console.log(buildingList);
+columnList = <%= raw Column.all.to_json %>;
+console.log(columnList);
+elevatorList = <%= raw Elevator.all.to_json%>;
+employeeList = <%= raw Employee.all.to_json%>;
+batteryList = <%= raw Battery.all.to_json%>;
+console.log(customerList[0].id);
+
+
+//function to get the author information:
+function getAuthorValue(){
+    user = <%=raw current_admin_user.to_json %>
+    console.log(user)
+    if (user == null){
+        return false;
+    }
+    for(var i = 0 ; i < Object.keys(employeeList).length; i++){
+        if (user.email == employeeList[i].email){
+            $("#author-id").val(employeeList[i].id)
+            console.log("employee")
+            console.log(employeeList[i].id)
+            
+            $("#author-name").val( employeeList[i].first_name + " " + employeeList[i].last_name)
+        return true;
+        }
+    }
+    return false;
+}
+
+
+//function to get batterie, column and elevator lists
+function getListFromPreviousID (selector, previousID,list){
+    //iterate through list
+    for (var i = 0; i< Object.keys(list).length; i++){
+        var val = list[i].id
+        //select desired elements
+        if (list[i].building_id == previousID || list[i].column_id == previousID || list[i].battery_id == previousID){
+             $(selector)
+                .append('<option value=' + val + '>' + val + '</option>');
+        }
+       
+    }
+
+}
+
+
+//function to create the building selector
+function getlistOfBuildings(customerID,selector){
+    //iterate list of buildings
+    for (var i = 0; i < Object.keys(buildingList).length; i++){
+        var val = buildingList[i].id        
+        var label = val + " -> " + buildingList[i].address_of_the_building
+        //select desired buildings
+        if (buildingList[i].customer_id == customerID){
+            $(selector)
+                .append('<option value=' + val + '>' + label + '</option>');
+        }
+    };
+
+};
+//create the selector form a list
+function createSelector(selector, list){
+
+    for (var i = 0 ; i < Object.keys(list).length; i++){
+        var val = list[i].id
+        if (list == customerList){
+        var label = val + " -> " + list[i].company_name
+        }
+        else if (list == employeeList){
+        var label = val + " -> " + list[i].first_name + " " + list[i].last_name
+        }
+        $(selector)
+            .append('<option value=' + val + '>' + label + '</option>')
+        }
+};
+
+$(function(){
+     //hide everything except customer selector
+    $(".hide-1").hide();
+
+    console.log(getAuthorValue())
+
+    if (getAuthorValue()){
+
+        
+
+        
+       
+
+        <% 
+        p "________________________________________"
+        pp current_admin_user 
+        p "________________________________________"
+        %>
+
+
+        createSelector("#customer-id", customerList);
+        createSelector("#employee-ID", employeeList);
+
+        // customer selection event handler
+        $("#customer-id").on('change',function(){
+            $("#building-ID").children('option:not(:first)').remove();
+            //display next field
+            $('.building').show(500);
+        
+            customerId =  $("#customer-id").val();
+            getlistOfBuildings(customerId,"#building-ID");
+        })
+        //building selection event handler
+        $("#building-ID").on('change', function(){
+            $("#batterie-ID").children('option:not(:first)').remove();
+            //display next field
+            $('.batterie').show(500);
+            $('.intervention').show(500);
+
+            $(".batterie").show(500);
+            buildingId = $("#building-ID").val();
+            getListFromPreviousID("#batterie-ID", buildingId, batteryList);
+        })
+        //batterie selection event handler
+        $("#batterie-ID").on('change', function(){
+            $("#column-ID").children('option:not(:first)').remove();
+            //display next field
+            $('.column').show(500);
+
+            $(".column").show(500);
+            batteryId = $("#batterie-ID").val();
+            getListFromPreviousID("#column-ID", batteryId, columnList);
+        })
+        //column selection event handler
+        $('#column-ID').on('change', function(){
+            $("#elevator-ID").children('option:not(:first)').remove();
+            //display next field
+            $('.elevator').show(500);
+
+            $(".elevator").show(500);
+
+            columnID = $('#column-ID').val();
+            getListFromPreviousID("#elevator-ID", columnID, elevatorList)
+        })
+        //elevator selection event handler
+        $('#elevator-ID').on('change', function(){
+            $('.employee').show(500);
+
+        })
+        //employee selection event handler
+        $('#employee-ID').on('change', function(){
+            $('.description').show(500);
+        })
+
+        //description event handler
+        $("#description-ID").on('change', function(){
+            var intervention = {
+        author: $("#author-id").val(),
+        customer_id: $('#customer-id').val(),
+        buidling_id: $('#building-ID').val(),
+        battery_id: $('#batterie-ID').val(),
+        column_id: $('#column-ID').val(),
+        elevator_id: $('#elevator-ID').val(),
+        employeeId: $('#employee-ID').val(),
+        report: $("#description-ID").val()
+        }
+        console.log(intervention)
+        })
+    }
+    else{
+        $('#new-intervention').hide();
+        $('#login-message').show();
+    }
+
+    
+});
+
+ 
+</script>
+
+
+
+</body>
