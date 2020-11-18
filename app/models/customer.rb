@@ -11,6 +11,10 @@ class Customer < ApplicationRecord
     def display_name
         "#{company_name}"
     end
+    has_many :interventions
+    def display_name
+        "#{company_name}"
+    end
 
     belongs_to :address
     belongs_to :employee

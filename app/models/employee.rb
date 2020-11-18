@@ -3,6 +3,12 @@ class Employee < ApplicationRecord
     def display_name
         "#{first_name} #{last_name}"
     end
+
+    has_many :interventions
+    def display_name
+        "#{first_name} #{last_name}"
+    end
+    
     belongs_to :admin_user
 
     has_many :customers

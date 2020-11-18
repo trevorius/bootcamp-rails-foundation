@@ -46,6 +46,7 @@ class Ability
         # can :read, InterventionForm
         can :read, AdminUser, id: user.id
         can :read, Employee, admin_user_id: user.id
+        can :update, Intervention, employee_id: Employee.where(admin_user_id: user.id).take[:id]
 
 
       end

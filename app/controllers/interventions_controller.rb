@@ -34,7 +34,7 @@ class InterventionsController < InheritedResources::Base
   private
 
     def intervention_params
-      params.require(:interventions).permit(:author, :customer_id, :buidling_id, :battery_id, :column_id, :elevator_id, :employeeId, :start_date, :end_date, :result, :report, :status)
+      params.require(:interventions).permit(:author, :customer_id, :building_id, :battery_id, :column_id, :elevator_id, :employee_id, :start_date, :end_date, :result, :report, :status)
     end
 
 end
