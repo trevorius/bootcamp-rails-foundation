@@ -83,62 +83,69 @@
     </div>
 
     <form id="new-intervention" method="post" action="intervention/create" enctype="multipart/form-data">
+        <fieldset>
+            <div class="row Customer ml-9 mr-7">
+                <div class="customer col-sm-8 col-md-5 col-lg-4 ">
+                <label class="form-label" for="customer-id"> Customer </label>
+                <select required class="form-control pointer" id="customer-id" name="interventions[customer_id]">
+                    <option value="">--- Select ---</option>
+                    
+                
 
-        <div class="row Customer ml-9 mr-7">
-            <div class="customer col-sm-8 col-md-5 col-lg-4 ">
-            <label class="form-label" for="customer-id"> Customer ID number </label>
-            <select class="form-control pointer" id="customer-id" name="interventions[customer_id]">
-                <option value="">--- Select ---</option>
-                
-               
+                    
+                </select>
 
-                
-            </select>
+                </div>
+            </div>
+            <div class="row Building-details ml-9 mr-7">
+                <div class="hide-1 building col-md-3" id="building">
+                <label class="form-label" for="building-ID"> Building </label>
+                <select required class="form-control pointer" id="building-ID" name="interventions[buidling_id]">            
+                    <option value="">--- Select ---</option>
+                    
+                </select>
+                </div>
+                <div class="batterie col-md-3 hide-1">
+                <label class="form-label " for="batterie-ID"> Batterie ID number </label>
+                <select class="form-control pointer" id="batterie-ID" name="interventions[battery_id]">
+                    <option value="">NULL</option>
+                </select>
+                </div>
+                <div class="column col-md-3 hide-1">
+                <label class="form-label" for="column-ID"> Column ID number </label>
+                <select class="form-control pointer" id="column-ID" name="interventions[column_id]">
+                    <option value="">NULL</option>
+                    
+                </select>
 
+                </div>
+                <div class="elevator col-md-3 hide-1">
+                <label class="form-label" for="elevator-ID"> Elevator ID number </label>
+                <select class="form-control pointer" id="elevator-ID" name="interventions[elevator_id]">
+                    <option value="">NULL</option>
+                    
+                </select>
+                </div>
             </div>
-        </div>
-        <div class="row Building-details ml-9 mr-7">
-            <div class="hide-1 building col-md-3" id="building">
-            <label class="form-label" for="building-ID"> Building ID number </label>
-            <select class="form-control pointer" id="building-ID">            
-                <option value="">--- Select ---</option>
-                
-            </select>
+            <div class="row intervention mr-7 ml-9 hide-1">
+                <div class="employee col-lg-4">
+                <label class="form-label" for="employee-ID"> Employee ID number </label>
+                <select class="form-control pointer" id="employee-ID" name="interventions[employeeId]">
+                    <option value="">NULL</option>
+                    
+                </select>
+                </div>
             </div>
-            <div class="batterie col-md-3 hide-1">
-            <label class="form-label " for="batterie-ID"> Batterie ID number </label>
-            <select class="form-control pointer" id="batterie-ID">
-                <option value="">NULL</option>
-            </select>
+            <div class=" row intervention hide-1 description col-lg-8 mr-7 ml-9 ">
+                <label class="form-label" for="description-ID"> Description </label>
+                <textarea required maxlength="10000" rows="8" class="form-control" id="description-ID" name="interventions[report]"></textarea>
             </div>
-            <div class="column col-md-3 hide-1">
-            <label class="form-label" for="column-ID"> Column ID number </label>
-            <select class="form-control pointer" id="column-ID">
-                <option value="">NULL</option>
-                
-            </select>
+        </fieldset>
 
+        <div class="row">
+            <div class="col-md-10 ml-9 ">
+                <button type="submit" class="btn btn-primary" id="create-intervention"><i class="fa fa-check"></i> Submit intervention </button>
             </div>
-            <div class="elevator col-md-3 hide-1">
-            <label class="form-label" for="elevator-ID"> Elevator ID number </label>
-            <select class="form-control pointer" id="elevator-ID">
-                <option value="">NULL</option>
-                
-            </select>
-            </div>
-        </div>
-        <div class="row intervention mr-7 ml-9 hide-1">
-            <div class="employee col-lg-4">
-            <label class="form-label" for="employee-ID"> Employee ID number </label>
-            <select class="form-control pointer" id="employee-ID">
-                <option value="">NULL</option>
-                
-            </select>
-            </div>
-        </div>
-        <div class=" row intervention hide-1 description col-lg-8 mr-7 ml-9 ">
-            <label class="form-label" for="description-ID"> Description </label>
-			<textarea required maxlength="10000" rows="8" class="form-control" id="description-ID"></textarea>
         </div>
 
     </form>
@@ -215,6 +222,12 @@ function createSelector(selector, list){
 $(function(){
     //hide everything except customer selector
     $(".hide-1").hide();
+
+    <% 
+    p "________________________________________"
+    pp current_admin_user 
+    p "________________________________________"
+    %>
 
 
     createSelector("#customer-id", customerList);
