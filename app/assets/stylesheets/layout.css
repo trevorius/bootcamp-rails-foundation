@@ -1,9 +1,3 @@
-@media (min-width: 768px) and (max-width: 1000px) {
-	.collapse {
-		display: none !important;
-	}
- }
-
 /** ********************************************** **
 
 	TABLE CONTENTS
@@ -3403,7 +3397,25 @@ body.menu-vertical #mainMenu.sidebar-vertical .navbar-collapse>ul.nav.navbar-nav
 
 
 
+		/* ======================== MOBILE MENU V2 ===================== */
 		
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+		/* ====================== END MOBILE MENU V2 ==================== */
+
+
 
 		#topNav div.nav-main-collapse.collapse:not(.show) {
 			display: none;
