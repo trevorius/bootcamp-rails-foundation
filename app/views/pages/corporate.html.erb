@@ -95,7 +95,7 @@
 											CONTACT
 										</a>
 									</li>
-									<li><!-- INTERVENTION -->
+									<li id="intervention-link"><!-- INTERVENTION -->
 										<a href="interventionform.html">
 											INTERVENTION
 										</a>
@@ -170,6 +170,8 @@
 								data-endspeed="1000"
 								data-endeasing="Power4.easeIn" style="z-index: 10; width: 750px; max-width: 750px; white-space: normal; text-align:center; font-size: 25px">
 								<p class="slider-text" style="line-height: 40px">Make your company or commerce stay ahead of the game with our state-of-the-art elevators.</p>
+								<p class="slider-text" style="line-height: 40px">Whether you're a small start-up or a big corporate giant, we will fulfill your needs. Guaranteed.</p>
+
 							</div>
 							<div class="tp-caption customin ltl tp-resizeme small_light_white"
 								data-x="center"
@@ -184,7 +186,6 @@
 								data-endelementdelay="0.1"
 								data-endspeed="1000"
 								data-endeasing="Power4.easeIn" style="z-index: 10; width: 750px; max-width: 750px; white-space: normal; text-align:center; font-size: 25px;">
-								<p class="slider-text" style="line-height: 40px">Whether you're a small start-up or a big corporate giant, we will fulfill your needs. Guaranteed.</p>
 							</div>
 						</li>
 
@@ -195,7 +196,7 @@
 
 							<div class="tp-caption customin ltl tp-resizeme text_white"
 								data-x="center"
-								data-y="190"
+								data-y="50"
 								data-customin="x:0;y:150;z:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:200;transformOrigin:50% 0%;"
 								data-speed="800"
 								data-start="1000"
@@ -211,7 +212,7 @@
 
 							<div class="tp-caption customin ltl tp-resizeme large_bold_white"
 								data-x="center"
-								data-y="230"
+								data-y="90"
 								data-customin="x:0;y:150;z:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:200;transformOrigin:50% 0%;"
 								data-speed="800"
 								data-start="1200"
@@ -228,7 +229,7 @@
 
 							<div class="tp-caption customin ltl tp-resizeme small_light_white"
 								data-x="center"
-								data-y="350"
+								data-y="210"
 								data-customin="x:0;y:150;z:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:200;transformOrigin:50% 0%;"
 								data-speed="800"
 								data-start="1400"
@@ -241,6 +242,7 @@
 								data-endeasing="Power4.easeIn"
 							    style="z-index: 3; width: 750px; max-width: 750px; white-space: normal; text-align:center; font-size: 25px">
 								<p class="slider-text" style="line-height: 40px">Over the course of many years of working passionately with our clients, we've perfected the technique of finding the solution which would best fit your needs of both elegance and safety.</p>
+								<p class="slider-text" style="line-height: 40px">We'll ask you to provide us with a few simple details about the building or commercial area, and we'll take care of the rest - the cost estimate and the final product itself - so you won't have to worry about anything.</p>
 							</div>
 
 							<div class="tp-caption customin ltl tp-resizeme small_light_white"
@@ -257,12 +259,11 @@
 								data-endspeed="1000"
 								data-endeasing="Power4.easeIn" 
 								style="z-index: 3; width: 750px; max-width: 750px; white-space: normal; text-align:center; font-size: 25px">
-								<p class="slider-text" style="line-height: 40px">We'll ask you to provide us with a few simple details about the building or commercial area, and we'll take care of the rest - the cost estimate and the final product itself - so you won't have to worry about anything.</p>
 							</div>
 
 							<div class="tp-caption customin ltl tp-resizeme"
 								data-x="center"
-								data-y="680"
+								data-y="640"
 								data-customin="x:0;y:150;z:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:200;transformOrigin:50% 0%;"
 								data-speed="800"
 								data-start="1550"
@@ -571,3 +572,34 @@
 		<!-- SCROLL TO TOP -->
 		<a href="#" id="toTop"></a>
 
+<script>
+
+
+	var employeeList = <%= raw Employee.all.to_json%>;
+
+
+	function IsUserAnEmployee(){
+		user = <%=raw current_admin_user.to_json %>
+		console.log(user)
+		if (user == null){
+			return false;
+		}
+		for(var i = 0 ; i < Object.keys(employeeList).length; i++){
+			if (user.email == employeeList[i].email){
+				console.log("employee")
+				console.log(employeeList[i].id)
+				
+				return true;
+			}
+		}
+		return false;
+	};
+	$(function(){
+
+		$('#intervention-link').hide();
+
+		if (IsUserAnEmployee()){
+			$('#intervention-link').show();
+	}
+	});
+</script>

@@ -95,7 +95,7 @@
 											CONTACT
 										</a>
 									</li>
-									<li><!-- INTERVENTION -->
+									<li id="intervention-link"><!-- INTERVENTION -->
 										<a href="interventionform.html">
 											INTERVENTION
 										</a>
@@ -423,3 +423,34 @@
 
 
 
+<script>
+
+
+	var employeeList = <%= raw Employee.all.to_json%>;
+
+
+	function IsUserAnEmployee(){
+		user = <%=raw current_admin_user.to_json %>
+		console.log(user)
+		if (user == null){
+			return false;
+		}
+		for(var i = 0 ; i < Object.keys(employeeList).length; i++){
+			if (user.email == employeeList[i].email){
+				console.log("employee")
+				console.log(employeeList[i].id)
+				
+				return true;
+			}
+		}
+		return false;
+	};
+	$(function(){
+
+		$('#intervention-link').hide();
+
+		if (IsUserAnEmployee()){
+			$('#intervention-link').show();
+	}
+	});
+</script>

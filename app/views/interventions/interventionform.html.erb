@@ -13,11 +13,11 @@
                 <!-- Mobile Menu Button -->
             
                 <!-- Logo -->
-                <a class="logo float-left scrollTo" href="index.html">
+                <a class="logo float-left" href="index.html">
                     <%= image_tag("rocketelevatorassets/R2.png")%>
                 </a>
 
-                <div class="navbar-collapse collapse float-right nav-main-collapse submenu-dark">
+                <%# <div class="navbar-collapse collapse float-right nav-main-collapse submenu-dark">
 
                     <nav class="nav-main">
 
@@ -75,7 +75,7 @@
                         </ul>
 
                     </nav>
-                </div>
+                </div> %>
 
             </div>
         </header>
@@ -183,6 +183,26 @@ var batteryList = <%= raw Battery.all.to_json%>;
 console.log(customerList[0].id);
 
 
+
+function IsUserAnEmployee(){
+        // get user information
+		user = <%=raw current_admin_user.to_json %>
+		console.log(user)
+		if (user == null){
+			return false;
+        }
+        //cmompare user to employees
+		for(var i = 0 ; i < Object.keys(employeeList).length; i++){
+			if (user.email == employeeList[i].email){
+				console.log("employee")
+				console.log(employeeList[i].id)
+				
+				return true;
+			}
+		}
+		return false;
+	};
+
 //function to get the author information:
 function getAuthorValue(){
     user = <%=raw current_admin_user.to_json %>
@@ -251,6 +271,16 @@ function createSelector(selector, list){
 };
 
 $(function(){
+
+
+    //logic to display intervention link
+    $('#intervention-link').hide();
+
+		if (IsUserAnEmployee()){
+			$('#intervention-link').show();
+    }
+    
+
      //hide everything except customer selector
     $(".hide-1").hide();
 
