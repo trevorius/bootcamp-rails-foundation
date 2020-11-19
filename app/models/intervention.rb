@@ -8,6 +8,12 @@ class Intervention < ApplicationRecord
 
     # # COMMENT IN OUT FOR ZENDESK
     # after_create :create_new_intervention_ticket
+    after_initialize :set_defaults, unless: :persisted?
+
+    def set_defaults
+        self.result ||= "Incomplete"
+        self.status ||= "Pending"
+    end
 
     def batterieId()
         if self.battery_id != nil
