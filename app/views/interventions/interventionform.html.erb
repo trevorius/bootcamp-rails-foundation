@@ -173,13 +173,13 @@ var customerList;
 
 customerList = <%=raw Customer.all.to_json %>;
 console.log(customerList);
-buildingList = <%= raw Building.all.to_json %>;
+var buildingList = <%= raw Building.all.to_json %>;
 console.log(buildingList);
-columnList = <%= raw Column.all.to_json %>;
+var columnList = <%= raw Column.all.to_json %>;
 console.log(columnList);
-elevatorList = <%= raw Elevator.all.to_json%>;
-employeeList = <%= raw Employee.all.to_json%>;
-batteryList = <%= raw Battery.all.to_json%>;
+var elevatorList = <%= raw Elevator.all.to_json%>;
+var employeeList = <%= raw Employee.all.to_json%>;
+var batteryList = <%= raw Battery.all.to_json%>;
 console.log(customerList[0].id);
 
 
