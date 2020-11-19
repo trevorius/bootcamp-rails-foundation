@@ -12820,7 +12820,7 @@ div.side-nav .side-nav-head button {
 	height:44px;
 	width:44px;
 }
-@media only screen and (min-width: 990px) {
+@media only screen and (min-width: 768px) {
 	div.side-nav>ul {
 		display:block !important;
 	}
