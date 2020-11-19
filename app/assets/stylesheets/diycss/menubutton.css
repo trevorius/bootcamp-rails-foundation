@@ -1,4 +1,4 @@
-.offcanvas-header{ display:none; }
+/* .offcanvas-header{ display:none; }
 
 @media (max-width: 992px) {
   .offcanvas-header{ display:block; }
@@ -19,4 +19,4 @@
     visibility: visible;
     transform: translateX(-100%);
   }
-}
+} */

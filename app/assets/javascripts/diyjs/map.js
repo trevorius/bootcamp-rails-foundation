@@ -1,7 +1,8 @@
 console.log("TESTING")
 
-
-
+$(function(){
+$('#map2').attr("class", "hide")
+});
 
 
 // console.log('"lat + " " + lng"')
