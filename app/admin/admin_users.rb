@@ -22,5 +22,7 @@ ActiveAdmin.register AdminUser, as:"User" do
     end
     f.actions
   end
+  
+
 
 end

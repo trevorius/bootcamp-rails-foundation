@@ -17,12 +17,13 @@ class AdminUser < ApplicationRecord
 
   # Assign admin role if user is an Employee and not a tchnician
   def admin?
-
-    if Employee.where(email: email).take[:title] != "technician"
-      employees = Employee.where(["email = ?", email])
-      if employees.size > 0
-        true
-      else
+    if Employee.where(email: email).take != nil
+      if Employee.where(email: email).take[:title] != "technician"
+        employees = Employee.where(["email = ?", email])
+        if employees.size > 0
+          true
+        else
+        end
       end
     end
   end
@@ -40,8 +41,10 @@ class AdminUser < ApplicationRecord
 
   # Assign a technician role
   def technician?
-    if Employee.where(email: email).take[:title] == "technician"
-      true
+    if Employee.where(email: email).take != nil
+      if Employee.where(email: email).take[:title] == "technician"
+        true
+      end
     end
   end
 

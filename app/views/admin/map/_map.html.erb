@@ -180,11 +180,10 @@
 
 
 <body>
-  <a href = "/index">
+  <%# <a href = "/index">
   RETURN TO INDEX
-  </a>
-
+  </a> %>
+  <%= audio_tag("first.wav", autoplay: false, controls: true)%>
   <div id="maps"></div>
 </body>
-<%= audio_tag("first.wav", autoplay: false, controls: true)%>
 <html>
