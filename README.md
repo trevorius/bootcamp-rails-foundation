@@ -23,9 +23,11 @@ Follow the admin link or the login from. the drop down. you can login as a custo
 
 for all accounts the default pasword is : password 
 
-customer : darrick@wunsch-pfannerstill.biz
-technician : marvella_schaden@thiel.co
-administrator : martin.chantal@codeboxx.biz
+- customer : darrick@wunsch-pfannerstill.biz
+
+- technician : marvella_schaden@thiel.co
+
+- administrator : martin.chantal@codeboxx.biz
 
 ## Different views
 
