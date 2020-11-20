@@ -23,7 +23,7 @@ Follow the admin link or the login from. the drop down. you can login as a custo
 
 for all accounts the default pasword is : password 
 
-- customer : darrick@wunsch-pfannerstill.biz
+- customer : glinda@huels-zemlak.info
 
 - technician : marvella_schaden@thiel.co
 
