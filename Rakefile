@@ -276,4 +276,33 @@ task :exporttest => :environment do
     end
     conn.finish()
     puts "\n--------rake task end--------\n"
+
+
+    
+
+
+
+
+end
+desc 'exportinterventions'
+
+    task :exportinterventions => :environment do
+    
+
+    conn = PG::Connection.open(host: "codeboxx-postgresql.cq6zrczewpu2.us-east-1.rds.amazonaws.com", user: "codeboxx", password: "Codeboxx1!", dbname: "pg_Trevor_Kitchen_team2")
+
+
+    conn.exec("TRUNCATE \"factinterventions\" RESTART IDENTITY")
+
+
+    Intervention.all.each do |intervention|
+
+        conn.exec("INSERT INTO \"factinterventions\" (\"employee_id\", \"building_id\", \"battery_id\", \"start_date_intervention\", \"end_date_intervention\", \"result\", \"status\", \"report\") VALUES ('#{intervention.employee_id}', '#{intervention.building_id}', '#{intervention.battery_id}','#{intervention.start_date}', '#{intervention.end_date}','#{intervention.result}','#{intervention.status}','#{intervention.report}')")
+        
+        pp intervention
+    end
+
+    conn.finish()
+    puts "\n--------rake task end--------\n"
+
 end

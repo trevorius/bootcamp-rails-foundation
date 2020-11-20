@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 require "faker"
+require 'date'
 
 
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
@@ -1355,6 +1356,7 @@ add = [
             "address1": "8 Watkins Road",
             "address2": "",
             "state": "VT",
+            "city": "unknown",
             "postalCode": "05468",
             "coordinates": {
                 "lat": 44.6028809,
@@ -12547,6 +12549,44 @@ end
 
 
     end
+
+end
+
+100.times do
+
+    p "interventions:"
+
+    start_date = Faker::Date.between(from: '1976-01-01', to: Date.today)
+    end_date = Faker::Date.between(from: start_date, to: Date.today)
+    result = "Complete"
+    report = Faker::Lorem.sentence(word_count:rand(5..35))
+    status = "Completed"
+    author = rand(1..10)
+    customer = rand(1..30)
+    building_id = rand(Building.where(customer_id: customer).first[:id]..Building.where(customer_id: customer).last[:id])
+    battery_id = rand(Battery.where(building_id: building_id).first[:id]..Battery.where(building_id: building_id).last[:id])
+    column_id = rand(Column.where(battery_id: battery_id).first[:id]..Column.where(battery_id: battery_id).last[:id])
+    elevator_id =rand(Elevator.where(column_id: column_id).first[:id]..Elevator.where(column_id: column_id).last[:id])
+    employee_id = rand(1..Employee.all.count)
+
+
+    interventions = Intervention.new(
+        start_date: start_date,
+        end_date: end_date,
+        result: result,
+        report: report,
+        status: status,
+        created_at: start_date,
+        updated_at: end_date,
+        author: author,
+        building_id:building_id,
+        employee_id: employee_id,
+        battery_id: battery_id,
+        column_id: column_id,
+        elevator_id: elevator_id
+
+    )
+    interventions.save
 
 end
 
