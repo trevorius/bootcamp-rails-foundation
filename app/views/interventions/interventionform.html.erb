@@ -273,6 +273,29 @@ function createSelector(selector, list){
         }
 };
 
+function getBuildingsThroughajax(id){
+    $.ajax({
+        url:"/building",
+        type: "GET",
+        dataType: "json",
+        data:{ customer: id },
+        error: function(xhr, status, error){
+            console.error('AJAX Error : ' + status + error);
+        },
+        success: function(response){
+            console.log(response)
+            var buildingsList = response["buildings"];
+            for (var i = 0 ; i < buildingsList.length; i++){
+                var val = buildingsList[i]["id"]
+                var label = val + " -> " +  buildingsList[i]["address_of_the_building"]
+
+                $('#building-ID').append('<option value=' + val + '>' + label + '</option>');
+            }
+        }
+    });
+
+}
+
 $(function(){
 
 
@@ -313,7 +336,8 @@ $(function(){
             $('.building').show(500);
         
             customerId =  $("#customer-id").val();
-            getlistOfBuildings(customerId,"#building-ID");
+            //getlistOfBuildings(customerId,"#building-ID");
+            getBuildingsThroughajax( customerId )
         })
         //building selection event handler
         $("#building-ID").on('change', function(){

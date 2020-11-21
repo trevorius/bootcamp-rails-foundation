@@ -35,7 +35,8 @@ Rails.application.routes.draw do
   get 'admin_root' => 'map#index'
   get 'customer' => 'elevators#index'
   get 'interventionform' => 'interventions#interventionform'
-
+  get '/building' => 'buildings#buildingselection'
+  # get 'building' => 'buildings#buildingselection'
   # POST routes
 
   post 'quote/create' => 'quotes#create'
