@@ -1,6 +1,72 @@
+
+
+# **Week 9 : CONSOLIDATION**
+## Website URL: (http://rocket-elevators-trevor.tk/)
+
+This week we were tasked with appropriating our group work and creating a new section to create intervention requests. that can then be modified using the REST-API from week8.
+
+## Interventionform.html.erb
+The new page can be found in this file amongst the views by following /app/views/interventions in the repository. the URL for the page is : 
+
+https://rocket-elevators-trevor.tk/interventionform.html
+
+however you will need to be logged in to fill in the form if not a link will invite you to do so: 
+![enter image description here](https://puu.sh/GPtrg/b40c92304c.png)
+
+If you are logged in a link in the navbar will appear  sending you to the form. if not logged in the link will not display. 
+
+once logged in the form will display like so : ![enter image description here](https://puu.sh/GPtIK/930fec1e4e.png)
+The first field read only will display the form author's name and as you fill the form the next fields will display. On submit a ticket is created in the Zendesk console using the api, and an intervention is added to the interventions table. it can be displayed and edited as described bellow in the back-office, OR with the REST_API 
+
+## To login 
+Follow the admin link or the login from. the drop down. you can login as a customer, technician, or administrator. Here a some account to try: 
+
+for all accounts the default pasword is : password 
+
+- customer : glinda@huels-zemlak.info
+
+- technician : marvella_schaden@thiel.co
+
+- administrator : martin.chantal@codeboxx.biz
+
+## Different views
+
+the different user types have access to different parts of the Back Office : 
+
+ - a ***customer*** can view their account information as well as
+   modifie it, they can only view their products : building, batterys,
+   .... elevators to modifie them they would have to contact  an
+   administrator. (this section was created during the group weeks, i however modified slightly the abiliyty.rb code to allow a difference with technicians) 
+   
+ - a ***technician*** can view and modifie their account information, aswell as interventions they have been selected to intervene upon.
+ - an ***administrator*** has full access to all information from both databases and can modify it. as a group revision over the last weekend we created a new customer information section that will use the REST-API to count the products for a designated customer by ID number.
+
+
+## APIs form previous weeks
+
+all APIs (bar google, which required creditcard info) from previous weeks have been transfered to Rocket-elevators specific acccounts, credentials of which will be forwarded to client so they can be tested.
+
+ ## REST-API
+The Api from last week has been personalised and redeployed:
+the github repository is here : https://github.com/trevorius/Rocket-RestAPI.git
+
+deployment to AZURE servicesgives this URL for the API: https://rocket-elevators-status.azurewebsites.net/api
+
+new endpoints have been implemented : 
+a **GET** request to https://rocket-elevators-status.azurewebsites.net/api/interventions will return all interventions
+
+a **GET** request to https://rocket-elevators-status.azurewebsites.net/api/interventions/pending-interventions will return all pending interventions that haven't begun.
+
+a **PUT** request to. https://rocket-elevators-status.azurewebsites.net/api/interventions/change-status-to-in-progress/{id} will change the status to inprogress and time stame the start date. you have to include in the body the id wich has to correspond with the URL id,  other fields are not necessary and will be ignored.
+
+a **PUT** request to https://rocket-elevators-status.azurewebsites.net/api/interventions/change-status-to-completed/{id} will change the status to Completed and time stamp the end date. you have to include in the body the id which has to correspond with the URL id,  other fields are not necessary and will be ignored. the API complete collection can be found here : 
+
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/47f22848ca3c199cba2f)
+
+
 # TEAM WEB-2 - Week 4 & 5 Odyssey 
 
-## Website URL: (http://rocket-elevators-trevor.tk/)
+
 
 # FALL-2020-TEAM-API-2 - Week 7 Odyssey 
 ## Website URL: (https://vndaos.com/)
