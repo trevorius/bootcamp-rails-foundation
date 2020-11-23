@@ -1,0 +1,1 @@
+require 'elevator_media_display/stre'

@@ -1,0 +1,12 @@
+{
+    "multicolorhighlighter.savelist": [
+        {
+            "color": "Blue",
+            "keyword": [
+                "describe",
+                "context",
+                "it"
+            ]
+        }
+    ]
+}
