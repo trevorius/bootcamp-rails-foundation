@@ -8,6 +8,8 @@ module ElevatorMedia
             require 'net/http'
             require 'openssl'
             require 'json'
+            require './lib/elevator_media_display/variables.rb'
+            
 
             url = URI("https://jokeapi-v2.p.rapidapi.com/joke/Any?format=json&blacklistFlags=nsfw%2Cracist&idRange=#{range}&type=single%2Ctwopart")
 
@@ -16,7 +18,7 @@ module ElevatorMedia
             http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
             request = Net::HTTP::Get.new(url)
-            request["x-rapidapi-key"] = ENV['rapidapi_key']
+            request["x-rapidapi-key"] = $rapid_api_key
             request["x-rapidapi-host"] = 'jokeapi-v2.p.rapidapi.com'
 
             response = http.request(request)

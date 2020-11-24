@@ -134,3 +134,6 @@ yarn-debug.log*
 !/config/storage.yml
 
 /app/assets/audio/first.wav
+
+# variables file for tests.
+/lib/elevator_media_display/variables.rb
