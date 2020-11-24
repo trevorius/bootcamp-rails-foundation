@@ -7,9 +7,6 @@ require 'rails_helper'
 
 module ElevatorMedia
     class Streamer
-        def self.getContent()
-            "test string"
-        end
         # sends an api request hoping for a joke to display
         def self.api_request(range)
             url = URI("https://jokeapi-v2.p.rapidapi.com/joke/Any?format=json&blacklistFlags=nsfw%2Cracist&idRange=#{range}&type=single%2Ctwopart")
@@ -24,15 +21,23 @@ module ElevatorMedia
         end
         # extract the joke from the API resonse
         def self.getjoke(jokeJSON)
-            # 
+            # determin what type of joke it is 
             if jokeJSON["type"] == "single"
                 return joke = {joke: jokeJSON["joke"]}
             elsif jokeJSON["type"] == "twopart"
+                # concatinate the two parts 
+                jokestring = jokeJSON["setup"] + '\n' + jokeJSON["delivery"]
                 return joke = {
                     setup: jokeJSON["setup"],
                     delivery: jokeJSON["delivery"]
                     }
             end
         end
+        def self.getContent(range)
+                result = self.api_request(range)
+                joke = self.getjoke(result)
+                jokeString = joke[:joke]            
+        end
+
     end
 end 

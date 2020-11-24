@@ -12,10 +12,19 @@ describe ElevatorMedia::Streamer do
     describe ".getContent" do
         context "on run " do
             it "returns a string" do
+                stub_request(:get, "https://jokeapi-v2.p.rapidapi.com/joke/Any?format=json&blacklistFlags=nsfw%2Cracist&idRange=0-150&type=single%2Ctwopart")
+                .to_return(body: joke0, status:200)
                 # p ENV['rapidapi_key']
-                expect(ElevatorMedia::Streamer.getContent()).to be_a(String)
+                expect(ElevatorMedia::Streamer.getContent("0-150")).to be_a(String)
             end
+            it "gets an api response and extracts from the repsonse a singel part joke " do
+                stub_request(:get, "https://jokeapi-v2.p.rapidapi.com/joke/Any?format=json&blacklistFlags=nsfw%2Cracist&idRange=0-150&type=single%2Ctwopart")
+                .to_return(body: joke0, status:200)
+
+                pp ElevatorMedia::Streamer.getContent("0-150")
+                expect(ElevatorMedia::Streamer.getContent("0-150")).to  include("I've got a really good UDP joke to tell you but I don’t know if you'll get it.")
         
+            end
         end
     end
     describe ".api_request" do
@@ -56,10 +65,10 @@ describe ElevatorMedia::Streamer do
                 expect(ElevatorMedia::Streamer.getjoke(JSON.parse(joke0))).to have_key(:joke)                
             end
             it " returns a 2 step joke if given one" do
-                pp ElevatorMedia::Streamer.getjoke(JSON.parse(joke147))
+              
                 expect(ElevatorMedia::Streamer.getjoke(JSON.parse(joke147))).to have_key(:delivery)
                 expect(ElevatorMedia::Streamer.getjoke(JSON.parse(joke147))).to have_key(:setup)
             end
-        end
+       end
     end
 end
