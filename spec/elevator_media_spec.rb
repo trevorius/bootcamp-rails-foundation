@@ -31,5 +31,11 @@ describe ElevatorMedia::Streamer do
            
             end
         end
+        context "sends range 0-150 to joke api" do
+            it "returns a random element from that range" do
+                expect(ElevatorMedia::Streamer.api_request("0-150")["id"]).to be_between(0, 150).inclusive
+            end
+        end
+       
     end
 end
