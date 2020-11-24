@@ -57,8 +57,8 @@ describe ElevatorMedia::Streamer do
             end
             it " returns a 2 step joke if given one" do
                 pp ElevatorMedia::Streamer.getjoke(JSON.parse(joke147))
-                expect(ElevatorMedia::Streamer.getjoke(JSON.parse(joke147))).to have_key(:setup)
                 expect(ElevatorMedia::Streamer.getjoke(JSON.parse(joke147))).to have_key(:delivery)
+                expect(ElevatorMedia::Streamer.getjoke(JSON.parse(joke147))).to have_key(:setup)
             end
         end
     end

@@ -138,3 +138,5 @@ gem 'active_bootstrap_skin'
 
 #TDD gems
 gem 'rspec-rails', group: :test
+
+gem 'simplecov', require: false, group: :test
