@@ -36,6 +36,8 @@ describe ElevatorMedia::Streamer do
                 expect(ElevatorMedia::Streamer.api_request("0-150")["id"]).to be_between(0, 150).inclusive
             end
         end
+    describe ".getjoke"
+        context "from the response of api_request extract the joke"
        
     end
 end
