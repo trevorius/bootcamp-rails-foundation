@@ -25,17 +25,21 @@ module ElevatorMedia
             if jokeJSON["type"] == "single"
                 return joke = {joke: jokeJSON["joke"]}
             elsif jokeJSON["type"] == "twopart"
-                # concatinate the two parts 
-                jokestring = jokeJSON["setup"] + '\n' + jokeJSON["delivery"]
+                # concatinate the two parts and add html to change paragraphs
+                jokestring = jokeJSON["setup"] + '</p><p class="second-line">' + jokeJSON["delivery"]
                 return joke = {
                     setup: jokeJSON["setup"],
-                    delivery: jokeJSON["delivery"]
+                    delivery: jokeJSON["delivery"],
+                    joke: jokestring
                     }
             end
         end
         def self.getContent(range)
+                # make the request
                 result = self.api_request(range)
+                # extract the joke from the response
                 joke = self.getjoke(result)
+                # take the joke string
                 jokeString = joke[:joke]            
         end
 

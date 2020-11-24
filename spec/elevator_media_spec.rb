@@ -6,32 +6,41 @@ require 'rails_helper'
 
 joke147 = File.read("./fixtures/joke147response.json")
 joke0 = File.read("./fixtures/joke0response.json")
+def stub(range)
+    stub_request(:get, "https://jokeapi-v2.p.rapidapi.com/joke/Any?format=json&blacklistFlags=nsfw%2Cracist&idRange=#{range}&type=single%2Ctwopart")
+end
+
 
 
 describe ElevatorMedia::Streamer do
     describe ".getContent" do
         context "on run " do
             it "returns a string" do
-                stub_request(:get, "https://jokeapi-v2.p.rapidapi.com/joke/Any?format=json&blacklistFlags=nsfw%2Cracist&idRange=0-150&type=single%2Ctwopart")
-                .to_return(body: joke0, status:200)
-                # p ENV['rapidapi_key']
+                stub("0-150").to_return(body: joke0, status:200)
                 expect(ElevatorMedia::Streamer.getContent("0-150")).to be_a(String)
             end
             it "gets an api response and extracts from the repsonse a singel part joke " do
-                stub_request(:get, "https://jokeapi-v2.p.rapidapi.com/joke/Any?format=json&blacklistFlags=nsfw%2Cracist&idRange=0-150&type=single%2Ctwopart")
-                .to_return(body: joke0, status:200)
-
-                pp ElevatorMedia::Streamer.getContent("0-150")
+                stub("0-150").to_return(body: joke0, status:200)
                 expect(ElevatorMedia::Streamer.getContent("0-150")).to  include("I've got a really good UDP joke to tell you but I don’t know if you'll get it.")
         
+            end
+            it "gets an api response and extracts from the repsonse a two part joke " do
+                stub("0-150").to_return(body: joke147, status:200)
+                # first line
+                expect(ElevatorMedia::Streamer.getContent("0-150")).to  include("My neighbor is a 90 year old with Alzheimer's, I see him every morning and he asks me")
+                # second line
+                expect(ElevatorMedia::Streamer.getContent("0-150")).to  include("ut the look of joy in his eyes whenever I answer him is worth the world.")
+                # contains an html tag to change line as a new paragraph
+                expect(ElevatorMedia::Streamer.getContent("0-150")).to  include('</p><p class="second-line">')
+
+
             end
         end
     end
     describe ".api_request" do
         context "sends 0 to the joke api" do            
             it "returns a specific joke as json object" do
-                stub_request(:get, "https://jokeapi-v2.p.rapidapi.com/joke/Any?format=json&blacklistFlags=nsfw%2Cracist&idRange=0&type=single%2Ctwopart")
-                .to_return(body: joke0, status:200)
+                stub("0").to_return(body: joke0, status:200)
                 expect(ElevatorMedia::Streamer.api_request("0")).to eq(JSON.parse({
                     "error": false,
                     "category": "Programming",
@@ -53,8 +62,7 @@ describe ElevatorMedia::Streamer do
         end
         context "sends range 0-150 to joke api" do
             it "returns a random element from that range" do
-                stub_request(:get, "https://jokeapi-v2.p.rapidapi.com/joke/Any?format=json&blacklistFlags=nsfw%2Cracist&idRange=0-150&type=single%2Ctwopart")
-                .to_return(body: joke147, status:200)
+                stub("0-150").to_return(body: joke147, status:200)
                 expect(ElevatorMedia::Streamer.api_request("0-150")["id"]).to be_between(0, 150).inclusive
             end
         end
