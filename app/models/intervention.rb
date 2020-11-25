@@ -15,27 +15,27 @@ class Intervention < ApplicationRecord
         self.status ||= "Pending"
     end
 
-    def batterieId()
-        if self.battery_id != nil
-            return self.battery_id      
+    def batterieId(intervention)
+        if intervention.battery_id != nil
+            return intervention.battery_id      
         end
         return ""
     end
-    def columnId()
-        if self.column_id != nil
-            return self.column_id      
+    def columnId(intervention)
+        if intervention.column_id != nil
+            return intervention.column_id      
         end
         return ""
     end
-    def elevatorId()
-        if self.elevator_id != nil
-            return self.elevator_id      
+    def elevatorId(intervention)
+        if intervention.elevator_id != nil
+            return intervention.elevator_id      
         end
         return ""
     end
-    def employeeId()
-        if self.employee_id != nil
-            return self.employee_id      
+    def employeeId(intervention)
+        if intervention.employee_id != nil
+            return intervention.employee_id      
         end
         return ""
     end
@@ -57,10 +57,10 @@ class Intervention < ApplicationRecord
                     1. Requester : #{Employee.find(self.author)[:first_name]} #{Employee.find(self.author)[:last_name]}
                     2. Customer company name : #{Customer.find(self.customer_id)[:company_name]}
                     3. Building ID : #{self.building_id}
-                    4. Battery ID : #{batterieId()}
-                    5. Column ID : #{columnId()}                    
-                    6. Elevator : #{elevatorId()}
-                    7. Employee assigned to the task : #{employeeId()}
+                    4. Battery ID : #{batterieId(self)}
+                    5. Column ID : #{columnId(self)}                    
+                    6. Elevator : #{elevatorId(self)}
+                    7. Employee assigned to the task : #{employeeId(self)}
                     8. Description of the intervention :#{self.report}
                     "
             }, 
