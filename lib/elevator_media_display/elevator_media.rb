@@ -2,11 +2,11 @@ require 'uri'
 require 'net/http'
 require 'openssl'
 require 'json'
-require './lib/elevator_media_display/variables.rb'
-require 'rails_helper'
+# require './lib/elevator_media_display/variables.rb'
+# require 'rails_helper'
 
-module ElevatorMedia
-    class Streamer
+module ElevatorMedia 
+    class Streamer 
 
         def self.getContent(range)
             # make the request

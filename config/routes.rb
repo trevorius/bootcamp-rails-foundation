@@ -36,6 +36,7 @@ Rails.application.routes.draw do
   get 'customer' => 'elevators#index'
   get 'interventionform' => 'interventions#interventionform'
   get '/building' => 'buildings#buildingselection'
+  get 'streamer' => 'pages#streamer'
   # get 'building' => 'buildings#buildingselection'
   # POST routes
 
