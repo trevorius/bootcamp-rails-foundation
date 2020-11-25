@@ -6,6 +6,7 @@ require 'rails_helper'
 
 joke147 = File.read("./fixtures/joke147response.json")
 joke0 = File.read("./fixtures/joke0response.json")
+
 def stub(range)
     stub_request(:get, "https://jokeapi-v2.p.rapidapi.com/joke/Any?format=json&blacklistFlags=nsfw%2Cracist&idRange=#{range}&type=single%2Ctwopart")
 end
@@ -35,7 +36,6 @@ describe ElevatorMedia::Streamer do
             end
             it "returns a full html string ready to include in a streamer" do
                 stub("0-150").to_return(body: joke147, status:200)
-
                 expect(ElevatorMedia::Streamer.getContent("0-150")).to start_with('<div ')
                 expect(ElevatorMedia::Streamer.getContent("0-150")).to end_with('</div>')
             end
