@@ -31,4 +31,8 @@ test ('joke value ', async () =>{
     expect(subject).toHaveProperty("lang", "en");
 });
 
+test('extractJoke with a one liner', () => {
+
+    expect(example.extractJoke(joke0)).toBe("I've got a really good UDP joke to tell you but I don’t know if you'll get it.")
+});
     
