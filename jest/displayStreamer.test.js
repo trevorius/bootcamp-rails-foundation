@@ -1,63 +1,34 @@
 const Streamer = require('../lib/elevatorMedia.js');
 // const $ = require('jquery');
-// import * as ElevatorMedia from '../lib/elevatorMedia.js'
 let example = new Streamer();
 
+const joke0 = require('../fixtures/joke0response.json')
+const joke147 = require('../fixtures/joke147response.json')
+
+
+
+
+// verify class import works
 test('test function', () => {
 
         expect(example.testing("string")).toBe("test string")
 
 });
 
-    // test('joke api', done => {
-    //     jest.setTimeout(8000);
-    // function callback(data){
-      
-    //     try{
-    //         expect(data).toContain({"lang": "en"});
-    //         done();        
-    //     }catch (error){
-    //         expect(data).toThrow(Timeout);
-    //         done(error);
-    //     }
-    // }
-    // example.getJoke(callback);
-    // });
-
-    // test('joke api', async () => {
-    //     jest.setTimeout(8000);
-
-    // await expect(example.getJoke()).resolves.toContain({"lang": "en"})
-    // });
-    // test('joke api fails with an error', async () => {
-    //     await expect(example.getJoke()).rejects.toThrow('error');
-    // });
-      
-      
-      
-
-    // test('joke api', () => {
-    //     jest.setTimeout(8000);
-
-    //     return expect(example.getJoke()).resolves.toContain({"lang": "en"});
     
-    // });
+test('joke api call by verrifying the language of the joke.', async () => {
+    // changed the timeout limit just incase
+    jest.setTimeout(8000);
+    // async function requires the result to await.
+    const data = await example.getJoke("0-150");
+    // verrifie the property of the returned body .
+    expect(data).toHaveProperty("lang", "en"); 
+});
+test ('joke value ', async () =>{
 
-    test('joke api', async () => {
-        jest.setTimeout(8000);
+    var subject = await example.jokeJson;
 
-        const data = await example.getJoke();
-        expect(data).toHaveProperty("lang", "en"); 
-    });
+    expect(subject).toHaveProperty("lang", "en");
+});
 
-    // test('joke api fails with an error', async () => {
-    //     jest.setTimeout(8000);
-
-    //     expect.assertions(1);
-    //     try {
-    //       await example.getJoke();
-    //     } catch (e) {
-    //       expect(e).toMatch('error');
-    //     }
-    //   });
-
+    
