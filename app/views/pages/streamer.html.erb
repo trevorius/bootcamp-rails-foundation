@@ -1,5 +1,8 @@
 <body>
-    
+      <%
+      require 'elevator_media_display/elevator_media.rb'
+      
+      %>    
       <%= ElevatorMedia::Streamer.getContent("0-150").html_safe%>
    
 </body>
