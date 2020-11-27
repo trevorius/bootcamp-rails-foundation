@@ -53,7 +53,7 @@ RSpec.describe Intervention, :type => :model do
         end
         context "dummy columnId field is nil" do
             it "will give an empty string for Zendesk to use" do
-                pp subject
+         
                 expect(subject.columnId(subject)).to eq("")
             end
         end
