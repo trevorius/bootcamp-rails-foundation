@@ -50,6 +50,8 @@ test ('getContent', async () =>{
 test ('getContent is html format', async ()  => {
     // if the string contains the div tags it will display on a html page.
     const test = await  example.getContent("0-150");
-    expect(test).toMatch(/<div/)
+    expect(test).toMatch(/<div/);
+
+    console.log(test);
 
 })
