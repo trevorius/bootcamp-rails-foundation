@@ -44,5 +44,7 @@ test('extractJoke with a two liner', () => {
                     '"second-line">But the look of joy in his eyes whenever I answer him is worth the world.'
     expect(example.extractJoke(joke147)).toBe(twoLiner)
 });
+test(' make joke into html string (makeHtmlString)',()=>{
 
-    
+    expect(example.makeHtmlString("string")).toMatch(/^<div*.*?div>$/)   
+});
