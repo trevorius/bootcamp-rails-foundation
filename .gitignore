@@ -137,3 +137,4 @@ yarn-debug.log*
 
 # variables file for tests.
 /lib/elevator_media_display/variables.rb
+/lib/keys.js
