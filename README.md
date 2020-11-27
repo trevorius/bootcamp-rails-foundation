@@ -1,4 +1,46 @@
+# **WEEK 10**
 
+## Test Driven Development
+
+This week was an introduction to the concept os test driven development.
+The principle is to write a test before you start anything and then write code so the test passes, using a red to green flag system. Once the test passes refactor the code and comment it check it still passes and repeat the process for the next step. This allows you to increase the test library as the  program progresses and verrifie the previous steps still function.
+
+## 
+
+To implement this we were tasked to make a media streamer for rocket-elevators. I chose to get the information from a Joke API and the Getcontent function will return a Joke in a html string.
+
+##
+## Ruby
+The code for the media streamer can be found in the lib folder : 
+[./lib/elevator_media.rb](https://github.com/trevorius/rocket-elevators-rails-foundation/blob/master/lib/elevator_media_display/elevator_media.rb)
+the tests are run using the RSPEC gem and coverage of the tests can be viewed thanks to  simplecov .
+
+the tests files are in [the spec folder](https://github.com/trevorius/rocket-elevators-rails-foundation/tree/master/spec).
+end the media [test is here](https://github.com/trevorius/rocket-elevators-rails-foundation/blob/master/spec/elevator_media_spec.rb)
+
+to run the test sequence clone the repo and use the command : 
+ ***bundle exec rspec --format documentation***
+and to view coverage : 
+***open coverage/index.html***
+
+The api calls are stubed with webmock and 2 example returns have been saved in the fixtures folder. these are used throughout the tests after this.
+
+As a practice and to see what else could be tested using this system further tests have been put into the  rails app : these tests are in the [rails_ap_test_spec.rb](https://github.com/trevorius/rocket-elevators-rails-foundation/blob/master/spec/rails_ap_test_spec.rb) file
+
+## JavaScript
+
+test in javascript is done using Jest that was installed with yarn and to reun the test sequence use the command : 
+***yarn test***
+
+the tests can be found in the [Jest folder](https://github.com/trevorius/rocket-elevators-rails-foundation/tree/master/jest) 
+and  for the streamer in [displayStreamer.test.js](https://github.com/trevorius/rocket-elevators-rails-foundation/blob/master/jest/displayStreamer.test.js)
+
+the program itself is in the lib folder as [elevatorMedia.js](https://github.com/trevorius/rocket-elevators-rails-foundation/blob/master/lib/elevatorMedia.js)
+
+in order to run the test you will need a keys.js file in the lib folder with a rapidAPI key structured like this : ![enter image description here](https://puu.sh/GROBe/44b7394ad8.png)
+ 
+ **without this variable 2 tests will fail that test the api call** 
+ ![enter image description here](https://puu.sh/GRP5s/0acecece42.png)
 
 # **Week 9 : CONSOLIDATION**
 ## Website URL: (http://rocket-elevators-trevor.tk/)
