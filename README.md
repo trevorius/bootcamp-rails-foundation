@@ -27,6 +27,9 @@ The api calls are stubed with webmock and 2 example returns have been saved in t
 
 As a practice and to see what else could be tested using this system further tests have been put into the  rails app : these tests are in the [rails_ap_test_spec.rb](https://github.com/trevorius/rocket-elevators-rails-foundation/blob/master/spec/rails_ap_test_spec.rb) file
 
+a verry simple view ov the streamer has been added to the pages folder in views and will display the joke without any css styling.
+it can be accessed on the rails server at localhost:<portnumber>/streamer
+
 ## JavaScript
 
 test in javascript is done using Jest that was installed with yarn and to reun the test sequence use the command : 
