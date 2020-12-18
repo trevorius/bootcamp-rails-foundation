@@ -103,10 +103,10 @@ gem 'pg', '~> 1.2', '>= 1.2.3'
 gem 'faker', '~> 2.14'
 
 
-gem 'populator', '~> 1.0'
+# gem 'populator', '~> 1.0'
 
 
-gem 'omniauth'
+# gem 'omniauth'
 
 gem 'cancancan'
 gem 'async-websocket', '~> 0.8.0'
