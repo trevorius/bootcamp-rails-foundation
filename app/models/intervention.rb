@@ -6,8 +6,9 @@ class Intervention < ApplicationRecord
     belongs_to :column, optional: true
     belongs_to :elevator, optional: true
 
-    # COMMENT IN OUT FOR ZENDESK
-    after_create :create_new_intervention_ticket
+    # # COMMENT IN OUT FOR ZENDESK
+    # after_create :create_new_intervention_ticket
+
     after_initialize :set_defaults, unless: :persisted?
 
     def set_defaults

@@ -1,7 +1,7 @@
 class Lead < ApplicationRecord
 
-    # COMMENT IN OUT FOR ZENDESK
-    after_create :create_new_lead_ticket
+    # # COMMENT IN OUT FOR ZENDESK
+    # after_create :create_new_lead_ticket
 
     validate :file_size_under_ten_mb 
 

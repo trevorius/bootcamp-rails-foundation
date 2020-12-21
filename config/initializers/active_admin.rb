@@ -118,7 +118,8 @@ ActiveAdmin.setup do |config|
   # roots for each namespace.
   #
   # Default:
-  config.root_to = 'map#index'
+  config.root_to = 'elevators#index'
+  # 'map#index'
 
   # == Admin Comments
   #

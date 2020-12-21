@@ -11,8 +11,8 @@ class Elevator < ApplicationRecord
         "#{id}"
     end 
 
-    #COMMENT IN OUT FOR TWILIO
-    after_save :send_sms
+    # #COMMENT IN OUT FOR TWILIO
+    # after_save :send_sms
 
     def send_sms()
         acct_sid = ENV['TWILIO_ACCT_SID']
@@ -37,8 +37,8 @@ class Elevator < ApplicationRecord
         )
     end
     
-    # COMMENT IN OUT FOR SLACK
-    before_update :slack_notifier
+    # # COMMENT IN OUT FOR SLACK
+    # before_update :slack_notifier
 
 
     def slack_notifier

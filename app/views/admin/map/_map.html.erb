@@ -1,12 +1,13 @@
 <html>
 <title>Customer Map</title>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=default%22%3E"></script>
+    <%# <script src="https://polyfill.io/v3/polyfill.min.js?features=default%22%3E"></script>
 
-    <script src="https://unpkg.com/@googlemaps/markerclustererplus/dist/index.min.js"></script>
+    <script src="https://unpkg.com/@googlemaps/markerclustererplus/dist/index.min.js"></script> %>
 
-    <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{ENV['google_api_key']}&callback=initMap&libraries=&v=weekly", defer: 'defer' %>
+    <%# <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{ENV['google_api_key']}&callback=initMap&libraries=&v=weekly", defer: 'defer' %> %>
 
-
+<%
+=begin
  <script>
 
 
@@ -170,16 +171,16 @@
   
 
         </script> 
+=end
+%>
 
 
      
 
 
 <body>
-  <%# <a href = "/index">
-  RETURN TO INDEX
-  </a> %>
+  
   <%= audio_tag("first.wav", autoplay: false, controls: true)%>
-  <div id="maps"></div>
+  <%# <div id="maps"></div> %>
 </body>
 <html>

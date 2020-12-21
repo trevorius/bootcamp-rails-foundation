@@ -42,9 +42,9 @@ class LeadsController < InheritedResources::Base
         format.html { redirect_to root_path, notice: "Save process completed!" }
         format.json { render json: @lead, status: :created, location: @lead }
         
-        #--------------Sendgrid ---------------------
-        SendgridMailer.send(@lead.email.to_s, {"contactfullname": @lead.contact_full_name, "projectname": @lead.project_name}, 'd-7c8339b48e014c7d80cbbcfbf5d11707')
-        #--------------Sendgrid ---------------------
+        # #--------------Sendgrid ---------------------
+        # SendgridMailer.send(@lead.email.to_s, {"contactfullname": @lead.contact_full_name, "projectname": @lead.project_name}, 'd-7c8339b48e014c7d80cbbcfbf5d11707')
+        # #--------------Sendgrid ---------------------
 
       else
         format.html { 
