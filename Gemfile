@@ -140,3 +140,7 @@ gem 'active_bootstrap_skin'
 gem 'rspec-rails', group: :test
 
 gem 'simplecov', require: false, group: :test
+
+# increase watchers
+
+gem 'listener'
