@@ -144,3 +144,8 @@ gem 'simplecov', require: false, group: :test
 # increase watchers
 
 gem 'listener'
+
+#devops
+gem 'newrelic_rpm'
+
+gem 'newrelic-infinite_tracing'
