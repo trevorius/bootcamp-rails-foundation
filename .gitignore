@@ -132,7 +132,7 @@ yarn-debug.log*
 /config/*.yml
 !/config/cable.yml
 !/config/storage.yml
-!/config/newrelic.yml
+
 
 /app/assets/audio/first.wav
 
